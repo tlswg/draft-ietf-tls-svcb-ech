@@ -17,7 +17,7 @@ author:
  -
     ins: B. Schwartz
     name: Ben Schwartz
-    organization: Google
+    organization: Meta Platforms, Inc.
     email: ietf@bemasc.net
  -
     ins: M. Bishop
