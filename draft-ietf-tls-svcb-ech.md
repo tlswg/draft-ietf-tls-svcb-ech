@@ -84,6 +84,8 @@ A SVCB RRSet containing some RRs with "ech" and some without is vulnerable to a 
 
 Use of ECH yields an anonymity set of cardinality equal to the number of ECH-enabled server domains supported by a given client-facing server. Thus, even with an encrypted ClientHello, an attacker who can enumerate the set of ECH-enabled domains supported by a client-facing server can guess the correct SNI with probability at least 1/K, where K is the size of this ECH-enabled server anonymity set. This probability may be increased via traffic analysis or other mechanisms.
 
+An attacker who can prevent SVCB resolution can deny clients any associated security benefits. A hostile recursive resolver can always deny service to SVCB queries, but network intermediaries can often prevent resolution as well, even when the client and recursive resolver validate DNSSEC and use a secure transport. These downgrade attacks can prevent a client from being aware that "ech" is configured which could result in the client sending the ClientHello in cleartext. To prevent downgrades, {{Section 3.1 of !SVCB}} recommends that clients abandon the connection attempt when such an attack is detected.
+
 # IANA Considerations
 
 IANA is instructed to modify the Service Binding (SVCB) Parameter Keys Registry entry for "ech" as follows:
