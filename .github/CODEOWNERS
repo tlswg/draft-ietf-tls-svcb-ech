@@ -1,0 +1,3 @@
+# Automatically generated CODEOWNERS
+# Regenerate with `make update-codeowners`
+draft-ietf-tls-svcb-ech.md ietf@bemasc.net mbishop@evequefou.be erik+ietf@nygren.org
