@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-25T00:49:18.027015+00:00",
+  "timestamp": "2024-06-27T00:49:36.470634+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -181,32 +181,6 @@
           "comments": []
         }
       ]
-    },
-    {
-      "number": 2,
-      "id": "PR_kwDOKaV2Rc5yeOL5",
-      "title": "Delete .gitignore",
-      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/2",
-      "state": "CLOSED",
-      "author": "erosmary",
-      "authorAssociation": "NONE",
-      "assignees": [],
-      "labels": [],
-      "body": "",
-      "createdAt": "2024-06-14T11:39:27Z",
-      "updatedAt": "2024-06-14T11:39:37Z",
-      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
-      "baseRefName": "main",
-      "baseRefOid": "cb39cceaac4ebb245768f5596bd2ca1798e5ef94",
-      "headRepository": "erosmary/draft-ietf-tls-svcb-ech",
-      "headRefName": "patch-2",
-      "headRefOid": "a40665b094c687309cc07b644c63cf9da0f517b2",
-      "closedAt": "2024-06-14T11:39:37Z",
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
     },
     {
       "number": 5,
