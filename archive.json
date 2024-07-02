@@ -1,0 +1,240 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-07-02T00:49:40.354704+00:00",
+  "repo": "tlswg/draft-ietf-tls-svcb-ech",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 3,
+      "id": "I_kwDOKaV2Rc6NSeRS",
+      "title": "WGLC: Requirements for Port Prefix Naming",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/3",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Raghu Saxena [previously raised](https://mailarchive.ietf.org/arch/msg/tls/ynRkX60dGq-ofmSW4POhppQcgkY/) this issue:\r\n\r\n> I was wondering if it may be useful to use stronger language in the draft to indicate a client MUST use Port Prefix Naming when looking up the SVCB record.",
+      "createdAt": "2024-06-24T14:39:30Z",
+      "updatedAt": "2024-06-24T20:47:06Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As this document is not a protocol mapping, but simply the definition of a SvcParam which could be used by any protocol mapping, I don\u2019t believe mandating anything about how mappings construct their names is appropriate here.",
+          "createdAt": "2024-06-24T20:47:05Z",
+          "updatedAt": "2024-06-24T20:47:05Z"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOKaV2Rc6NSexD",
+      "title": "WGLC: TLS version applicability",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/4",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Rich Salz raised this issue:\r\n\r\n>The draft says: \" It is applicable to all TLS-based protocols (including DTLS [RFC9147] and QUIC version 1 [RFC9001]) unless otherwise specified.\"\r\n>\r\n>But the ECH draft says: \"ECH is supported in TLS 1.3 [RFC8446], DTLS 1.3 [RFC9147], and newer versions of the TLS and DTLS protocols.\"\r\n>\r\n>Those two documents should be harmonized.  I think they should both say what the ECH draft says, but they should also both mention that QUIC as a protocol that uses TLS 1.3 is also supported.\r\n",
+      "createdAt": "2024-06-24T14:40:25Z",
+      "updatedAt": "2024-06-24T14:40:25Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOKaV2Rc5rO0qw",
+      "title": "Incorporate text from rfc9460 on the need for DNSSEC",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/1",
+      "state": "MERGED",
+      "author": "enygren",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes https://github.com/MikeBishop/draft-ietf-tls-svcb-ech/issues/2 to incorporate DNS Directorate feedback.  Clones text directly from rfc9460 with slight modifications.",
+      "createdAt": "2024-03-30T17:42:29Z",
+      "updatedAt": "2024-05-23T18:37:08Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "3d385742442afcaa832d232a565eeee324edc660",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "enygren-dnssec-sec-consid-1",
+      "headRefOid": "a8d7119ab581a7b0bf178ff48d0c34ce3072b0e2",
+      "closedAt": "2024-05-21T18:09:15Z",
+      "mergedAt": "2024-05-21T18:09:15Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "cb39cceaac4ebb245768f5596bd2ca1798e5ef94"
+      },
+      "comments": [
+        {
+          "author": "moonshiner",
+          "authorAssociation": "NONE",
+          "body": "I like this. thanks Erik",
+          "createdAt": "2024-03-30T18:04:49Z",
+          "updatedAt": "2024-03-30T18:04:49Z"
+        },
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@MikeBishop Please confirm so we can merge this.",
+          "createdAt": "2024-04-12T15:35:08Z",
+          "updatedAt": "2024-04-12T15:35:08Z"
+        },
+        {
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Linking also to mail thread: https://mailarchive.ietf.org/arch/msg/tls/VQcqUuOXSE8sgcp4_CHa6Jlc394/",
+          "createdAt": "2024-05-23T18:37:07Z",
+          "updatedAt": "2024-05-23T18:37:07Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc51bN-M",
+          "commit": {
+            "abbreviatedOid": "a8d7119"
+          },
+          "author": "ekr",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "this LGTM.",
+          "createdAt": "2024-03-30T23:28:46Z",
+          "updatedAt": "2024-03-30T23:28:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc51gx8M",
+          "commit": {
+            "abbreviatedOid": "a8d7119"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-01T15:42:53Z",
+          "updatedAt": "2024-04-01T15:42:53Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc53GyP6",
+          "commit": {
+            "abbreviatedOid": "a8d7119"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-12T19:12:34Z",
+          "updatedAt": "2024-04-12T19:12:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOKaV2Rc5zYSrF",
+      "title": "Version restrictions",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/5",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is an attempt to merge the version restrictions from the ECH draft and this. Alternatively, we could just say that this is applicable to any protocols which can use ECH and point to that draft normatively.\r\n\r\nCloses #4.",
+      "createdAt": "2024-06-24T14:55:31Z",
+      "updatedAt": "2024-06-24T14:55:31Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "cb39cceaac4ebb245768f5596bd2ca1798e5ef94",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "mbishop/versions",
+      "headRefOid": "82c114ba2f97268ece9ad8c2a2109f025f8d1b37",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOKaV2Rc5zaQkS",
+      "title": "Template update",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/6",
+      "state": "MERGED",
+      "author": "MikeBishop",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Update to latest version of I-D Template",
+      "createdAt": "2024-06-24T20:29:00Z",
+      "updatedAt": "2024-06-24T20:30:06Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "cb39cceaac4ebb245768f5596bd2ca1798e5ef94",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "template-update",
+      "headRefOid": "44a5688060c55b056ff9db703354587c1d909809",
+      "closedAt": "2024-06-24T20:30:01Z",
+      "mergedAt": "2024-06-24T20:30:01Z",
+      "mergedBy": "MikeBishop",
+      "mergeCommit": {
+        "oid": "3c10e702daaa56ea489238b6c0dd3fc46df9da58"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
