@@ -44,13 +44,15 @@ This specification defines a new SvcParam to enable the use of TLS Encrypted Cli
 
 # SvcParam for ECH configuration {#ech-param}
 
-The "ech" SvcParamKey is defined for conveying the ECH configuration of an alternative endpoint.  It is applicable to all TLS-based protocols (including DTLS {{?RFC9147}} and QUIC version 1 {{?RFC9001}}) unless otherwise specified.
+The "ech" SvcParamKey is defined for conveying the ECH configuration of an alternative endpoint.  It is applicable to all schemes that use TLS-based protocols (including DTLS {{?RFC9147}} and QUIC version 1 {{?RFC9001}}) unless otherwise specified.
 
 In wire format, the value of the parameter is an ECHConfigList ({{Section 4 of !ECH}}), including the redundant length prefix.  In presentation format, the value is the ECHConfigList in Base 64 Encoding ({{Section 4 of !RFC4648}}).  Base 64 is used here to simplify integration with TLS server software.  To enable simpler parsing, this SvcParam MUST NOT contain escape sequences.
 
 # Server behavior
 
 When publishing a record containing an "ech" parameter, the publisher MUST ensure that all IP addresses of TargetName correspond to servers that have access to the corresponding private key or are authoritative for the public name. (See {{Section 7.2.2 of !ECH}} for more details about the public name.)  Otherwise, connections will fail entirely.
+
+These servers SHOULD support a protocol version that is compatible with ECH.  At the time of writing, the compatible versions are TLS 1.3, DTLS 1.3, and QUIC version 1.  If the server does not support a compatible version, each connection attempt will have to be retried, delaying the connection and wasting resources.
 
 # Client behavior {#ech-client-behavior}
 
