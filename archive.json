@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-23T00:51:36.245241+00:00",
+  "timestamp": "2024-07-25T00:51:24.400150+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -62,7 +62,7 @@
       "labels": [],
       "body": "Raghu Saxena [previously raised](https://mailarchive.ietf.org/arch/msg/tls/ynRkX60dGq-ofmSW4POhppQcgkY/) this issue:\r\n\r\n> I was wondering if it may be useful to use stronger language in the draft to indicate a client MUST use Port Prefix Naming when looking up the SVCB record.",
       "createdAt": "2024-06-24T14:39:30Z",
-      "updatedAt": "2024-06-24T20:47:06Z",
+      "updatedAt": "2024-07-23T15:31:41Z",
       "closedAt": null,
       "comments": [
         {
@@ -71,6 +71,13 @@
           "body": "As this document is not a protocol mapping, but simply the definition of a SvcParam which could be used by any protocol mapping, I don\u2019t believe mandating anything about how mappings construct their names is appropriate here.",
           "createdAt": "2024-06-24T20:47:05Z",
           "updatedAt": "2024-06-24T20:47:05Z"
+        },
+        {
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Agreed, I think this doesn't need fixing.",
+          "createdAt": "2024-07-23T15:31:39Z",
+          "updatedAt": "2024-07-23T15:31:39Z"
         }
       ]
     },
@@ -86,7 +93,62 @@
       "labels": [],
       "body": "Rich Salz raised this issue:\r\n\r\n>The draft says: \" It is applicable to all TLS-based protocols (including DTLS [RFC9147] and QUIC version 1 [RFC9001]) unless otherwise specified.\"\r\n>\r\n>But the ECH draft says: \"ECH is supported in TLS 1.3 [RFC8446], DTLS 1.3 [RFC9147], and newer versions of the TLS and DTLS protocols.\"\r\n>\r\n>Those two documents should be harmonized.  I think they should both say what the ECH draft says, but they should also both mention that QUIC as a protocol that uses TLS 1.3 is also supported.\r\n",
       "createdAt": "2024-06-24T14:40:25Z",
-      "updatedAt": "2024-06-24T14:40:25Z",
+      "updatedAt": "2024-07-23T14:56:39Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm not convinced this is right.  The \"ech\" SvcParamKey is applicable to all TLS-based service endpoints.  The fact that a service endpoint is offering a TLS-based protocol is part of the service endpoint identity used by SVCB, but its supported TLS versions are not, so the use of this SvcParamKey cannot be restricted to a subset of TLS versions.\r\n\r\nConcretely, the \"ech\" SvcParamKey works fine for older TLS versions.  The server can respond to the outer ClientHello in TLS 1.2, ignoring the ECH extension, triggering the retry flow without ECH, and successful connection using TLS 1.2.  This is slower, but from SVCB's perspective it's behind the abstraction barrier of correctly functioning ECH.",
+          "createdAt": "2024-07-23T14:56:38Z",
+          "updatedAt": "2024-07-23T14:56:38Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOKaV2Rc6QklPs",
+      "title": "WGLC: Comments from Stephen Farrell",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/7",
+      "state": "OPEN",
+      "author": "enygren",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From Stephen Farrell:\r\n\r\nI (strongly:-) support publication. I do have comments but really\r\nam ok if those are ignored.\r\n\r\n- section 3 has a MUST for checking all IP addresses are for servers\r\nthat have access to the relevant ECH private key material. We go into\r\nsome more detail on how to do that in [1] so perhaps some of that\r\ntext ought be here, or (given the best HOWTO may change) that could\r\nbe via a reference to [1]. OTOH, that'd maybe be a normative ref\r\nso could delay things, so not sure how best to proceed. (See also\r\nthe \"bind\" comment at the end.)\r\n\r\n- A particular case of the above is if an ECHConfigList has more\r\nthan one ECHConfig (e.g. for different algs). I'm not sure if the\r\ntext here implies that all public values must \"work\" or if it\r\nmeans that at least one public value must \"work.\"  (In publication\r\ncode I've written I check all public keys and only publish if all\r\npublic keys are ok, but one could do otherwise and not suffer\r\ndisaster:-)\r\n\r\n- I'm not clear if section 3 implies a server has to check that\r\nall relevant A/AAAA and ipv[46]hint values are present and\r\ncorrect before publication. (Test publication code I've done\r\ncurrently ignores hints at publication time, and just checks\r\none of A/AAAA works, but I'd be ok with being more picky.)\r\n\r\n- I think it'd be better (but not necessary) if section 3 had some\r\nguidance on when >1 HTTPS RRdata value is reasonable or to be\r\nexpected for ECH-specific reasons. (Basically, if one has >1\r\nCDN I guess?)\r\n\r\n- I wonder if there's a need to consider the new happy eyeballs\r\nstuff [2] before declaring victory here. I've no strong opinion but\r\nthis and [2] probably should at least not contradict one another.\r\n(I don't know if that's been checked.)\r\n\r\n- Does 4.1 correspond to what browsers do now with ECH? It's\r\nnot clear to me that it does, but I'm not sure. (I'm currently\r\nwriting a test generator to figure that out but it'll be some\r\nweeks before I could answer the question myself.)\r\n\r\n- 4.2 implies but does not say that parts of the ech= value that\r\naffect the outer CH need to be encoded as extensions within the\r\nECHConfigList, or else are at the whim of the client code. That's\r\nprobably ok, but worth a bit of thought. (Personally, I'd prefer\r\nwe disparage extensions within ECHConfigList values but I think\r\nI've lost that argument before:-)\r\n\r\n- 4.3 has a MUST NOT for clients - do we need to say that that\r\nmeans normal clients and not the special-case client that is\r\nneeded to do checks before publication?\r\n\r\n- section 5 says: \"Origins that publish an \"ech\" SvcParam in their\r\nHTTPS record SHOULD also publish an HTTPS record with the \"ech\"\r\nSvcParam for every alt-authority offered in its Alt-Svc Field\r\nValues. Otherwise, clients might reveal the name of the server\r\nin an unencrypted ClientHello to an alt-authority.\" I think some\r\nexamples of that would really help. More generally some examples\r\nwould be good to add as an appendix.\r\n\r\n- I'd like to (yet again:-) suggest that defining a PEM format for\r\nECH stuff would be worthwhile, and could be done as an appendix of\r\nthis document. (I.e. include [3] as an appendix.) When I suggested\r\nthis before, there was some opposition so it;s ok if people still\r\ndon't want that, but IMO it'd be good were that defined somewhere.\r\n\r\n- Finally, I've been playing with bind a bit to see what it allows\r\nbe published. See below for what's published for one name right\r\nnow (I may delete that or it might still work when you read this,\r\napologies if the latter applies:-)\r\n\r\n     $ dig +short https [dodgy.test.defo.ie](http://dodgy.test.defo.ie/)\r\n     1 . ech=eHl6dwo=\r\n     1 . ech\r\n     1 . ech=YWJjCg==\r\n     10000 . ech=dG90YWwtY3JhcAo=\r\n     1 . ech=Cg==\r\n\r\nGiven that the onus should be on ECH aware clients to reject such\r\ndodgy stuff, perhaps we'd be better off to just say that publishers\r\nMUST check the presentation syntax is empty or valid base64 and\r\nSHOULD be a base64 encoded ECHConfigList? Then we could leave all\r\nthe details of checks before publication to [1] which may be a\r\nbetter approach.\r\n\r\nAgain though, I'm fine that this be published as-is and prefer\r\nthat to spending loads of time arguing, so do feel free to ignore\r\nany of the above,\r\n\r\nCheers,\r\nS.\r\n\r\n[1] https://datatracker.ietf.org/doc/html/draft-ietf-tls-wkech\r\n[2] https://datatracker.ietf.org/doc/draft-pauly-v6ops-happy-eyeballs-v3/\r\n[3] https://datatracker.ietf.org/doc/draft-farrell-tls-pemesni/",
+      "createdAt": "2024-07-23T15:32:08Z",
+      "updatedAt": "2024-07-23T15:34:20Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Inserting Mikes responses:\r\n\r\nMike Bishop via\u00a0ietf.org\r\n\r\n\t\r\nJun 25, 2024, 8:31\u202fAM\r\n\t\r\nto Stephen, Sean, TLS\r\nResponses to some of these in-line below. More generally, I think several of these arise from the question of whether requirements on \"publishers\" apply specifically to a tool which is automatically generating these records or generally to the operating entity causing the records to be created. I believe Section 3 is attempting to describe a state that needs to exist for safe deployment, not attempting to specify a tool per se. Thus I generally support leaving and/or moving requirements on automation to [1].\r\n\r\n> -----Original Message-----\r\n> From: Stephen Farrell <[stephen.farrell@cs.tcd.ie](mailto:stephen.farrell@cs.tcd.ie)>\r\n> Sent: Monday, June 24, 2024 8:00 PM\r\n> To: Sean Turner <[sean@sn3rd.com](mailto:sean@sn3rd.com)>; TLS List <[tls@ietf.org](mailto:tls@ietf.org)>\r\n> Subject: [TLS]Re: Working Group Last Call for Bootstrapping TLS Encrypted\r\n> ClientHello with DNS Service Bindings\r\n> \r\n> \r\n> Hiya,\r\n> \r\n> On 21/06/2024 17:26, Sean Turner wrote:\r\n> > Gentle reminder this WGLC is still ongoing.\r\n> \r\n> I (strongly:-) support publication. I do have comments but really am ok if those are\r\n> ignored.\r\n> \r\n> - section 3 has a MUST for checking all IP addresses are for servers that have\r\n> access to the relevant ECH private key material. We go into some more detail on\r\n> how to do that in [1] so perhaps some of that text ought be here, or (given the\r\n> best HOWTO may change) that could be via a reference to [1]. OTOH, that'd\r\n> maybe be a normative ref so could delay things, so not sure how best to proceed.\r\n> (See also the \"bind\" comment at the end.)\r\n\r\nI'm wary about adding a normative reference to an I-D that's not finalized yet; that's how we wound up with this document to begin with. In [1] you note that your mechanisms aren't intended to be universal, and I'm not sure that pulling it into this doc is required. I think the statement in Section 3 describes the desired state -- each IP the name might resolve to needs access to either the indicated key(s) or a certificate for the public name.\r\n\r\n> - A particular case of the above is if an ECHConfigList has more than one\r\n> ECHConfig (e.g. for different algs). I'm not sure if the text here implies that all\r\n> public values must \"work\" or if it means that at least one public value must\r\n> \"work.\"  (In publication code I've written I check all public keys and only publish if\r\n> all public keys are ok, but one could do otherwise and not suffer\r\n> disaster:-)\r\n\r\nI'm inclined to agree that all keys should ideally be supported by all servers identified by the TargetName, but being authoritative for the private name cures any gaps. Perhaps this needs to be more granular? MUST be authoritative for the public name and SHOULD have access to the private key seems reasonable at first glance, but is there a deployment scenario where the front-end will not be authoritative for the public name?\r\n\r\n> - I'm not clear if section 3 implies a server has to check that all relevant A/AAAA\r\n> and ipv[46]hint values are present and correct before publication. (Test\r\n> publication code I've done currently ignores hints at publication time, and just\r\n> checks one of A/AAAA works, but I'd be ok with being more picky.)\r\n> \r\n> - I think it'd be better (but not necessary) if section 3 had some guidance on when\r\n> >1 HTTPS RRdata value is reasonable or to be expected for ECH-specific reasons.\r\n> (Basically, if one has >1 CDN I guess?)\r\n\r\nTypically multi-CDN works by having a DNS server that issues different responses at different times, not by listing them all in a single RRSet. More likely this is if you have endpoints with different capabilities that aren't on the same server -- say, HTTP/2 and HTTP/3 are served off of different machines or at different port numbers.\r\n\r\n> - I wonder if there's a need to consider the new happy eyeballs stuff [2] before\r\n> declaring victory here. I've no strong opinion but this and [2] probably should at\r\n> least not contradict one another.\r\n> (I don't know if that's been checked.)\r\n\r\nHEv3 says that ECH records should be sorted ahead of non-ECH records, but doesn't say anything about switching to SVCB-reliant per 4.1. We should probably file that feedback with HEv3, but I don't believe this document needs to change.\r\n\r\n> - Does 4.1 correspond to what browsers do now with ECH? It's not clear to me\r\n> that it does, but I'm not sure. (I'm currently writing a test generator to figure that\r\n> out but it'll be some weeks before I could answer the question myself.)\r\n> \r\n> - 4.2 implies but does not say that parts of the ech= value that affect the outer CH\r\n> need to be encoded as extensions within the ECHConfigList, or else are at the\r\n> whim of the client code. That's probably ok, but worth a bit of thought.\r\n> (Personally, I'd prefer we disparage extensions within ECHConfigList values but I\r\n> think I've lost that argument before:-)\r\n> \r\n> - 4.3 has a MUST NOT for clients - do we need to say that that means normal\r\n> clients and not the special-case client that is needed to do checks before\r\n> publication?\r\n\r\nI think that seems clear enough, since the publisher isn't a \"client\" in this sense. But if it's not clear, that could be added.\r\n\r\n> - section 5 says: \"Origins that publish an \"ech\" SvcParam in their HTTPS record\r\n> SHOULD also publish an HTTPS record with the \"ech\"\r\n> SvcParam for every alt-authority offered in its Alt-Svc Field Values. Otherwise,\r\n> clients might reveal the name of the server in an unencrypted ClientHello to an\r\n> alt-authority.\" I think some examples of that would really help. More generally\r\n> some examples would be good to add as an appendix.\r\n> \r\n> - I'd like to (yet again:-) suggest that defining a PEM format for ECH stuff would be\r\n> worthwhile, and could be done as an appendix of this document. (I.e. include [3]\r\n> as an appendix.) When I suggested this before, there was some opposition so it;s\r\n> ok if people still don't want that, but IMO it'd be good were that defined\r\n> somewhere.\r\n\r\nI don't feel like that's connected enough to this document to define here, particularly not as a new addition at WGLC.",
+          "createdAt": "2024-07-23T15:33:34Z",
+          "updatedAt": "2024-07-23T15:33:34Z"
+        },
+        {
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "body": "From Stephen Farrell:\r\n\r\nOn 25/06/2024 16:30, Mike Bishop wrote:\r\n> Responses to some of these in-line below. More generally, I think\r\n> several of these arise from the question of whether requirements on\r\n> \"publishers\" apply specifically to a tool which is automatically\r\n> generating these records or generally to the operating entity causing\r\n> the records to be created. I believe Section 3 is attempting to\r\n> describe a state that needs to exist for safe deployment, not\r\n> attempting to specify a tool per se. Thus I generally support leaving\r\n> and/or moving requirements on automation to [1].\r\n\r\nI tend to agree and am fine with whatever wording tweaks\r\nthe authors prefer, but it'd likely be good to not say\r\n\"MUST\" (in this doc) in cases where the text is guidance\r\nfor what's a sane thing to do, rather than asking developers\r\nto reject other inputs.\r\n",
+          "createdAt": "2024-07-23T15:34:19Z",
+          "updatedAt": "2024-07-23T15:34:19Z"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOKaV2Rc6Qopjw",
+      "title": "WGLC: Comment regarding cardinality",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/8",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From Chris Patton:\r\n\r\n> \"Use of ECH yields an anonymity set of cardinality equal to the number of ECH-enabled server domains supported by a given client-facing server\" ... This is only true when certain conditions are meant. Suppose for example that the client-facing server maps one of the backend server domains to a unique IP address not used for any other backend server: this would reduce the anonymity set by 1.\r\n",
+      "createdAt": "2024-07-24T04:35:46Z",
+      "updatedAt": "2024-07-24T04:35:46Z",
       "closedAt": null,
       "comments": []
     }
@@ -194,7 +256,7 @@
       "labels": [],
       "body": "This is an attempt to merge the version restrictions from the ECH draft and this. Alternatively, we could just say that this is applicable to any protocols which can use ECH and point to that draft normatively.\r\n\r\nCloses #4.",
       "createdAt": "2024-06-24T14:55:31Z",
-      "updatedAt": "2024-06-24T14:55:31Z",
+      "updatedAt": "2024-07-24T04:49:16Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "cb39cceaac4ebb245768f5596bd2ca1798e5ef94",
@@ -205,7 +267,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I've proposed an alternative formulation at #10.",
+          "createdAt": "2024-07-24T04:49:14Z",
+          "updatedAt": "2024-07-24T04:49:14Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -233,6 +303,58 @@
       "mergeCommit": {
         "oid": "3c10e702daaa56ea489238b6c0dd3fc46df9da58"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOKaV2Rc52Se8k",
+      "title": "Adjust cardinality language",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/9",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Changes a claim of \"==\" to \"<=\".\r\n\r\nFixes #8",
+      "createdAt": "2024-07-24T04:37:12Z",
+      "updatedAt": "2024-07-24T04:37:12Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-cardinality",
+      "headRefOid": "ee32c8d6e698b13e77025f0563f6aa46a844a895",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOKaV2Rc52ShLo",
+      "title": "Discuss the implications of not supporting TLS 1.3",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/10",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #4",
+      "createdAt": "2024-07-24T04:48:25Z",
+      "updatedAt": "2024-07-24T04:48:26Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-versions",
+      "headRefOid": "3a2231619dfd711aa4d20111b123726d0cd30b56",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
