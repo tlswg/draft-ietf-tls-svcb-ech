@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-28T00:55:07.824609+00:00",
+  "timestamp": "2024-07-30T00:51:31.088654+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -249,21 +249,21 @@
       "id": "PR_kwDOKaV2Rc5zYSrF",
       "title": "Version restrictions",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This is an attempt to merge the version restrictions from the ECH draft and this. Alternatively, we could just say that this is applicable to any protocols which can use ECH and point to that draft normatively.\r\n\r\nCloses #4.",
       "createdAt": "2024-06-24T14:55:31Z",
-      "updatedAt": "2024-07-24T04:49:16Z",
+      "updatedAt": "2024-07-29T18:46:05Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "cb39cceaac4ebb245768f5596bd2ca1798e5ef94",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "mbishop/versions",
       "headRefOid": "82c114ba2f97268ece9ad8c2a2109f025f8d1b37",
-      "closedAt": null,
+      "closedAt": "2024-07-29T18:46:05Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -318,7 +318,7 @@
       "labels": [],
       "body": "Changes a claim of \"==\" to \"<=\".\r\n\r\nFixes #8",
       "createdAt": "2024-07-24T04:37:12Z",
-      "updatedAt": "2024-07-24T04:37:12Z",
+      "updatedAt": "2024-07-29T18:45:28Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
@@ -330,7 +330,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6DeMaS",
+          "commit": {
+            "abbreviatedOid": "ee32c8d"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-29T18:45:28Z",
+          "updatedAt": "2024-07-29T18:45:28Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 10,
@@ -344,7 +358,7 @@
       "labels": [],
       "body": "Fixes #4",
       "createdAt": "2024-07-24T04:48:25Z",
-      "updatedAt": "2024-07-24T04:48:26Z",
+      "updatedAt": "2024-07-29T18:45:41Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
@@ -356,7 +370,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6DeMoU",
+          "commit": {
+            "abbreviatedOid": "3a22316"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-29T18:45:41Z",
+          "updatedAt": "2024-07-29T18:45:41Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
