@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-06T00:51:43.363719+00:00",
+  "timestamp": "2024-08-08T00:52:09.112336+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -314,11 +314,13 @@
       "state": "OPEN",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "enygren"
+      ],
       "labels": [],
       "body": "Changes a claim of \"==\" to \"<=\".\r\n\r\nFixes #8",
       "createdAt": "2024-07-24T04:37:12Z",
-      "updatedAt": "2024-07-29T18:45:28Z",
+      "updatedAt": "2024-08-07T19:51:47Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
@@ -354,11 +356,13 @@
       "state": "OPEN",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "enygren"
+      ],
       "labels": [],
       "body": "Fixes #4",
       "createdAt": "2024-07-24T04:48:25Z",
-      "updatedAt": "2024-07-29T18:45:41Z",
+      "updatedAt": "2024-08-07T19:52:00Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
