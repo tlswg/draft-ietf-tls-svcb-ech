@@ -1026,11 +1026,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ECH in SVCB</td>
-<td class="right">July 2024</td>
+<td class="right">August 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schwartz, et al.</td>
-<td class="center">Expires 24 January 2025</td>
+<td class="center">Expires 13 February 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1043,12 +1043,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-tls-svcb-ech-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-23" class="published">23 July 2024</time>
+<time datetime="2024-08-12" class="published">12 August 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-24">24 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-02-13">13 February 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1090,7 +1090,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1185,8 +1185,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-svcparam-for-ech-configurat">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-svcparam-for-ech-configurat" class="section-name selfRef">SvcParam for ECH configuration</a>
       </h2>
-<p id="section-2-1">The "ech" SvcParamKey is defined for conveying the ECH configuration of an alternative endpoint.  It is applicable to all TLS-based protocols (including DTLS <span>[<a href="#RFC9147" class="cite xref">RFC9147</a>]</span> and QUIC version 1 <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span>) unless otherwise specified.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">In wire format, the value of the parameter is an ECHConfigList (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-18#section-4" class="relref">Section 4</a> of [<a href="#ECH" class="cite xref">ECH</a>]</span>), including the redundant length prefix.  In presentation format, the value is the ECHConfigList in Base 64 Encoding (<span><a href="https://rfc-editor.org/rfc/rfc4648#section-4" class="relref">Section 4</a> of [<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>).  Base 64 is used here to simplify integration with TLS server software.  To enable simpler parsing, this SvcParam MUST NOT contain escape sequences.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-1">The "ech" SvcParamKey is defined for conveying the ECH configuration of an alternative endpoint.  It is applicable to all schemes that use TLS-based protocols (including DTLS <span>[<a href="#RFC9147" class="cite xref">RFC9147</a>]</span> and QUIC version 1 <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span>) unless otherwise specified.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">In wire format, the value of the parameter is an ECHConfigList (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-20#section-4" class="relref">Section 4</a> of [<a href="#ECH" class="cite xref">ECH</a>]</span>), including the redundant length prefix.  In presentation format, the value is the ECHConfigList in Base 64 Encoding (<span><a href="https://rfc-editor.org/rfc/rfc4648#section-4" class="relref">Section 4</a> of [<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>).  Base 64 is used here to simplify integration with TLS server software.  To enable simpler parsing, this SvcParam MUST NOT contain escape sequences.<a href="#section-2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="server-behavior">
@@ -1194,7 +1194,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-server-behavior">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-server-behavior" class="section-name selfRef">Server behavior</a>
       </h2>
-<p id="section-3-1">When publishing a record containing an "ech" parameter, the publisher MUST ensure that all IP addresses of TargetName correspond to servers that have access to the corresponding private key or are authoritative for the public name. (See <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-18#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#ECH" class="cite xref">ECH</a>]</span> for more details about the public name.)  Otherwise, connections will fail entirely.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">When publishing a record containing an "ech" parameter, the publisher MUST ensure that all IP addresses of TargetName correspond to servers that have access to the corresponding private key or are authoritative for the public name. (See <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-20#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#ECH" class="cite xref">ECH</a>]</span> for more details about the public name.)  Otherwise, connections will fail entirely.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">These servers SHOULD support a protocol version that is compatible with ECH.  At the time of writing, the compatible versions are TLS 1.3, DTLS 1.3, and QUIC version 1.  If the server does not support a compatible version, each connection attempt will have to be retried, delaying the connection and wasting resources.<a href="#section-3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="ech-client-behavior">
@@ -1292,7 +1293,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dl class="references">
 <dt id="ECH">[ECH]</dt>
         <dd>
-<span class="refAuthor">Rescorla, E.</span>, <span class="refAuthor">Oku, K.</span>, <span class="refAuthor">Sullivan, N.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"TLS Encrypted Client Hello"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-esni-18</span>, <time datetime="2024-03-04" class="refDate">4 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-18">https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-18</a>&gt;</span>. </dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refAuthor">Oku, K.</span>, <span class="refAuthor">Sullivan, N.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"TLS Encrypted Client Hello"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-esni-20</span>, <time datetime="2024-08-04" class="refDate">4 August 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-20">https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-20</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC1034">[RFC1034]</dt>
         <dd>
