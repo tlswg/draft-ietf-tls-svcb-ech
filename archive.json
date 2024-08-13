@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-11T00:56:20.824594+00:00",
+  "timestamp": "2024-08-13T00:53:26.811533+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -86,15 +86,15 @@
       "id": "I_kwDOKaV2Rc6NSexD",
       "title": "WGLC: TLS version applicability",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Rich Salz raised this issue:\r\n\r\n>The draft says: \" It is applicable to all TLS-based protocols (including DTLS [RFC9147] and QUIC version 1 [RFC9001]) unless otherwise specified.\"\r\n>\r\n>But the ECH draft says: \"ECH is supported in TLS 1.3 [RFC8446], DTLS 1.3 [RFC9147], and newer versions of the TLS and DTLS protocols.\"\r\n>\r\n>Those two documents should be harmonized.  I think they should both say what the ECH draft says, but they should also both mention that QUIC as a protocol that uses TLS 1.3 is also supported.\r\n",
       "createdAt": "2024-06-24T14:40:25Z",
-      "updatedAt": "2024-07-23T14:56:39Z",
-      "closedAt": null,
+      "updatedAt": "2024-08-12T17:06:27Z",
+      "closedAt": "2024-08-12T17:06:27Z",
       "comments": [
         {
           "author": "bemasc",
@@ -320,7 +320,7 @@
       "labels": [],
       "body": "Changes a claim of \"==\" to \"<=\".\r\n\r\nFixes #8",
       "createdAt": "2024-07-24T04:37:12Z",
-      "updatedAt": "2024-08-07T19:51:47Z",
+      "updatedAt": "2024-08-12T17:05:36Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
@@ -345,6 +345,26 @@
           "createdAt": "2024-07-29T18:45:28Z",
           "updatedAt": "2024-07-29T18:45:28Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6FIhz4",
+          "commit": {
+            "abbreviatedOid": "ee32c8d"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-12T17:05:30Z",
+          "updatedAt": "2024-08-12T17:05:36Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I wonder if \"at best\" or \"roughly proportional to\" would be better than \"at most\"?\r\nI'm having trouble understanding exactly what is meant by \"at most\".\r\nThe \"traffic analysis and other mechanisms\" does help clarify, but it is squishy.",
+              "createdAt": "2024-08-12T17:05:30Z",
+              "updatedAt": "2024-08-12T17:05:36Z"
+            }
+          ]
         }
       ]
     },
@@ -353,7 +373,7 @@
       "id": "PR_kwDOKaV2Rc52ShLo",
       "title": "Discuss the implications of not supporting TLS 1.3",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/10",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -362,17 +382,19 @@
       "labels": [],
       "body": "Fixes #4",
       "createdAt": "2024-07-24T04:48:25Z",
-      "updatedAt": "2024-08-07T19:52:00Z",
+      "updatedAt": "2024-08-12T17:06:26Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b5345617d15c9cfbc1207ab89454f44957fa4882",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-versions",
       "headRefOid": "3a2231619dfd711aa4d20111b123726d0cd30b56",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-08-12T17:06:26Z",
+      "mergedAt": "2024-08-12T17:06:26Z",
+      "mergedBy": "enygren",
+      "mergeCommit": {
+        "oid": "e5e3c92a9f2ee28994a87fcaf1aa16382ad2654d"
+      },
       "comments": [],
       "reviews": [
         {
@@ -386,6 +408,19 @@
           "body": "",
           "createdAt": "2024-07-29T18:45:41Z",
           "updatedAt": "2024-07-29T18:45:41Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6FIiMr",
+          "commit": {
+            "abbreviatedOid": "3a22316"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-12T17:06:19Z",
+          "updatedAt": "2024-08-12T17:06:19Z",
           "comments": []
         }
       ]
