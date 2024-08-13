@@ -1030,7 +1030,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schwartz, et al.</td>
-<td class="center">Expires 13 February 2025</td>
+<td class="center">Expires 14 February 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1043,12 +1043,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-tls-svcb-ech-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-08-12" class="published">12 August 2024</time>
+<time datetime="2024-08-13" class="published">13 August 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-02-13">13 February 2025</time></dd>
+<dd class="expires"><time datetime="2025-02-14">14 February 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1090,7 +1090,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1245,7 +1245,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
         </h3>
 <p id="section-5.1-1">A SVCB RRSet containing some RRs with "ech" and some without is vulnerable to a downgrade attack: a network intermediary can block connections to the endpoints that support ECH, causing the client to fall back to a non-ECH endpoint.  This configuration is NOT RECOMMENDED. Zone owners who do use such a mixed configuration SHOULD mark the RRs with "ech" as more preferred (i.e. lower SvcPriority value) than those without, in order to maximize the likelihood that ECH will be used in the absence of an active adversary.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">Use of ECH yields an anonymity set of cardinality equal to the number of ECH-enabled server domains supported by a given client-facing server. Thus, even with an encrypted ClientHello, an attacker who can enumerate the set of ECH-enabled domains supported by a client-facing server can guess the correct SNI with probability at least 1/K, where K is the size of this ECH-enabled server anonymity set. This probability may be increased via traffic analysis or other mechanisms.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">In an idealized deployment, ECH protects the SNI with an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server. Accordingly, an attacker who can enumerate this set can always guess the encrypted SNI with probability 1/K, where K is the number of domains in the set. In practice, this probability may be increased via traffic analysis, popularity weighting, and other mechanisms.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">An attacker who can prevent SVCB resolution can deny clients any associated security benefits. A hostile recursive resolver can always deny service to SVCB queries, but network intermediaries can often prevent resolution as well, even when the client and recursive resolver validate DNSSEC and use a secure transport. These downgrade attacks can prevent a client from being aware that "ech" is configured which could result in the client sending the ClientHello in cleartext. To prevent downgrades, <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-svcb-https-12#section-3.1" class="relref">Section 3.1</a> of [<a href="#SVCB" class="cite xref">SVCB</a>]</span> recommends that clients abandon the connection attempt when such an attack is detected.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
