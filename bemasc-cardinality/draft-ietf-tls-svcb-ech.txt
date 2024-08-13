@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 25 January 2025                                       E. Nygren
+Expires: 14 February 2025                                      E. Nygren
                                                      Akamai Technologies
-                                                            24 July 2024
+                                                          13 August 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 January 2025.
+   This Internet-Draft will expire on 14 February 2025.
 
 Copyright Notice
 
@@ -180,14 +180,13 @@ Table of Contents
    likelihood that ECH will be used in the absence of an active
    adversary.
 
-   Use of ECH yields an anonymity set whose cardinality is at most the
-   number of ECH-enabled server domains supported by a given client-
-   facing server.  Thus, even with an encrypted ClientHello, an attacker
-   who can enumerate the set of ECH-enabled domains supported by a
-   client-facing server can guess the correct SNI with probability at
-   least 1/K, where K is the size of this ECH-enabled server anonymity
-   set.  This probability may be increased via traffic analysis or other
-   mechanisms.
+   In an idealized deployment, ECH protects the SNI with an anonymity
+   set consisting of all the ECH-enabled server domains supported by a
+   given client-facing server.  Accordingly, an attacker who can
+   enumerate this set can always guess the encrypted SNI with
+   probability 1/K, where K is the number of domains in the set.  In
+   practice, this probability may be increased via traffic analysis,
+   popularity weighting, and other mechanisms.
 
    An attacker who can prevent SVCB resolution can deny clients any
    associated security benefits.  A hostile recursive resolver can
@@ -221,9 +220,9 @@ Table of Contents
 
    [ECH]      Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
-              draft-ietf-tls-esni-18, 4 March 2024,
+              draft-ietf-tls-esni-20, 4 August 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
-              esni-18>.
+              esni-20>.
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
