@@ -48,6 +48,12 @@ The "ech" SvcParamKey is defined for conveying the ECH configuration of an alter
 
 In wire format, the value of the parameter is an ECHConfigList ({{Section 4 of !ECH}}), including the redundant length prefix.  In presentation format, the value is the ECHConfigList in Base 64 Encoding ({{Section 4 of !RFC4648}}).  Base 64 is used here to simplify integration with TLS server software.  To enable simpler parsing, this SvcParam MUST NOT contain escape sequences.
 
+~~~
+ech="AEj+DQBEAQAgACAdd+scUi0IYFsXnUIU7ko2Nd9+F8M26pAGZVpz/KrWPgAEAAEAAWQ
+VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
+~~~
+{: title="ECH SvcParam with a public_name of "ech-sites.example.com"}
+
 # Server behavior
 
 When publishing a record containing an "ech" parameter, the publisher MUST ensure that all IP addresses of TargetName correspond to servers that have access to the corresponding private key or are authoritative for the public name. (See {{Section 7.2.2 of !ECH}} for more details about the public name.)  Otherwise, connections will fail entirely.
@@ -64,7 +70,7 @@ The SVCB-optional client behavior specified in ({{Section 3 of !SVCB}}) permits 
 
 ## ClientHello construction
 
-When ECH is in use, the TLS ClientHello is divided into an unencrypted "outer" and an encrypted "inner" ClientHello.  The outer ClientHello is an implementation detail of ECH, and its contents are controlled by the ECHConfig in accordance with {{ECH}}.  The inner ClientHello is used for establishing a connection to the service, so its contents may be influenced by other SVCB parameters.  For example, the requirements related to ALPN protocol identifiers in {{Section 7.1.2 of SVCB}} apply only to the inner ClientHello.  Similarly, it is the inner ClientHello whose Server Name Indication identifies the desired service.
+When ECH is in use, the TLS ClientHello is divided into an unencrypted "outer" and an encrypted "inner" ClientHello.  The outer ClientHello is an implementation detail of ECH, and its contents are controlled by the ECHConfig in accordance with {{ECH}}.  The inner ClientHello is used for establishing a connection to the service, so its contents may be influenced by other SVCB parameters.  For example, the requirements related to ALPN protocol identifiers in {{Section 7.1.2 of SVCB}} apply only to the inner ClientHello.  Similarly, it is the inner ClientHello whose Server Name Indication (SNI) identifies the desired service.
 
 ## Performance optimizations
 
