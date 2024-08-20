@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 14 February 2025                                      E. Nygren
+Expires: 21 February 2025                                      E. Nygren
                                                      Akamai Technologies
-                                                          13 August 2024
+                                                          20 August 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 February 2025.
+   This Internet-Draft will expire on 21 February 2025.
 
 Copyright Notice
 
@@ -98,6 +98,11 @@ Table of Contents
    integration with TLS server software.  To enable simpler parsing,
    this SvcParam MUST NOT contain escape sequences.
 
+ech="AEj+DQBEAQAgACAdd+scUi0IYFsXnUIU7ko2Nd9+F8M26pAGZVpz/KrWPgAEAAEAAWQ
+VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
+
+ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.com
+
 3.  Server behavior
 
    When publishing a record containing an "ech" parameter, the publisher
@@ -139,7 +144,7 @@ Table of Contents
    example, the requirements related to ALPN protocol identifiers in
    Section 7.1.2 of [SVCB] apply only to the inner ClientHello.
    Similarly, it is the inner ClientHello whose Server Name Indication
-   identifies the desired service.
+   (SNI) identifies the desired service.
 
 4.3.  Performance optimizations
 
