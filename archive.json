@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-20T00:51:55.709922+00:00",
+  "timestamp": "2024-08-22T00:53:14.759341+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -505,26 +505,50 @@
       "id": "PR_kwDOKaV2Rc54Rnsn",
       "title": "Add an example",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/11",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Requested in #7",
       "createdAt": "2024-08-13T20:10:22Z",
-      "updatedAt": "2024-08-13T20:10:23Z",
+      "updatedAt": "2024-08-20T13:45:15Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "f8d3bec0eb5f2c57c421fb564e6c157ab4b2ace0",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-example",
       "headRefOid": "1f2e788d129ac1090aa303d5fedbc3b9de586b56",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "closedAt": "2024-08-20T13:45:12Z",
+      "mergedAt": "2024-08-20T13:45:12Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "34a187869459997c194ebbb91ee21a4fe3da8e0d"
+      },
+      "comments": [
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@enygren @MikeBishop I'll plan to merge this and produce a new version if there are no objections today.",
+          "createdAt": "2024-08-20T12:41:20Z",
+          "updatedAt": "2024-08-20T12:41:20Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6F_dCz",
+          "commit": {
+            "abbreviatedOid": "1f2e788"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-20T13:28:13Z",
+          "updatedAt": "2024-08-20T13:28:13Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
