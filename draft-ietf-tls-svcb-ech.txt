@@ -243,12 +243,10 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
               <https://www.rfc-editor.org/rfc/rfc4648>.
 
-   [SVCB]     Schwartz, B. M., Bishop, M., and E. Nygren, "Service
-              Binding and Parameter Specification via the DNS (SVCB and
-              HTTPS Resource Records)", Work in Progress, Internet-
-              Draft, draft-ietf-dnsop-svcb-https-12, 11 March 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-
-              svcb-https-12>.
+   [SVCB]     Schwartz, B., Bishop, M., and E. Nygren, "Service Binding
+              and Parameter Specification via the DNS (SVCB and HTTPS
+              Resource Records)", RFC 9460, DOI 10.17487/RFC9460,
+              November 2023, <https://www.rfc-editor.org/rfc/rfc9460>.
 
 7.2.  Informative References
 
