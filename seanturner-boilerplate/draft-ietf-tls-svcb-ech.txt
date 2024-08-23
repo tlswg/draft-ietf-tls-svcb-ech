@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 25 January 2025                                       E. Nygren
+Expires: 24 February 2025                                      E. Nygren
                                                      Akamai Technologies
-                                                            24 July 2024
+                                                          23 August 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 January 2025.
+   This Internet-Draft will expire on 24 February 2025.
 
 Copyright Notice
 
@@ -54,18 +54,19 @@ Copyright Notice
 Table of Contents
 
    1.  Overview
-   2.  SvcParam for ECH configuration
-   3.  Server behavior
-   4.  Client behavior
-     4.1.  Disabling fallback
-     4.2.  ClientHello construction
-     4.3.  Performance optimizations
-   5.  Interaction with HTTP Alt-Svc
-     5.1.  Security Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   2.  Terminology
+   3.  SvcParam for ECH configuration
+   4.  Server behavior
+   5.  Client behavior
+     5.1.  Disabling fallback
+     5.2.  ClientHello construction
+     5.3.  Performance optimizations
+   6.  Interaction with HTTP Alt-Svc
+     6.1.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Authors' Addresses
 
 1.  Overview
@@ -84,7 +85,15 @@ Table of Contents
    can be used in SVCB, HTTPS or any future SVCB-compatible DNS records,
    and is intended to serve as the primary bootstrap mechanism for ECH.
 
-2.  SvcParam for ECH configuration
+2.  Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  SvcParam for ECH configuration
 
    The "ech" SvcParamKey is defined for conveying the ECH configuration
    of an alternative endpoint.  It is applicable to all schemes that use
@@ -98,7 +107,12 @@ Table of Contents
    integration with TLS server software.  To enable simpler parsing,
    this SvcParam MUST NOT contain escape sequences.
 
-3.  Server behavior
+ech="AEj+DQBEAQAgACAdd+scUi0IYFsXnUIU7ko2Nd9+F8M26pAGZVpz/KrWPgAEAAEAAWQ
+VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
+
+ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.com
+
+4.  Server behavior
 
    When publishing a record containing an "ech" parameter, the publisher
    MUST ensure that all IP addresses of TargetName correspond to servers
@@ -113,12 +127,12 @@ Table of Contents
    compatible version, each connection attempt will have to be retried,
    delaying the connection and wasting resources.
 
-4.  Client behavior
+5.  Client behavior
 
    This section describes client behavior in using ECH configurations
    provided in SVCB or HTTPS records.
 
-4.1.  Disabling fallback
+5.1.  Disabling fallback
 
    The SVCB-optional client behavior specified in (Section 3 of [SVCB])
    permits clients to fall back to a direct connection if all SVCB
@@ -128,7 +142,7 @@ Table of Contents
    establishment if SVCB resolution succeeded (as defined in Section 3
    of [SVCB]) and all alternative endpoints have an "ech" SvcParam.
 
-4.2.  ClientHello construction
+5.2.  ClientHello construction
 
    When ECH is in use, the TLS ClientHello is divided into an
    unencrypted "outer" and an encrypted "inner" ClientHello.  The outer
@@ -139,9 +153,9 @@ Table of Contents
    example, the requirements related to ALPN protocol identifiers in
    Section 7.1.2 of [SVCB] apply only to the inner ClientHello.
    Similarly, it is the inner ClientHello whose Server Name Indication
-   identifies the desired service.
+   (SNI) identifies the desired service.
 
-4.3.  Performance optimizations
+5.3.  Performance optimizations
 
    Prior to retrieving the SVCB records, the client does not know
    whether they contain an "ech" parameter.  As a latency optimization,
@@ -153,7 +167,7 @@ Table of Contents
    TLS ClientHello until after SVCB resolution has completed.  (See
    Section 5.1 of [SVCB]).
 
-5.  Interaction with HTTP Alt-Svc
+6.  Interaction with HTTP Alt-Svc
 
    HTTP clients that implement both HTTP Alt-Svc [RFC7838] and the HTTPS
    record type [SVCB] can use them together, provided that they only
@@ -170,11 +184,11 @@ Table of Contents
    an alt-authority.
 
    If all HTTPS records for an alt-authority contain "ech" SvcParams,
-   the client MUST adopt SVCB-reliant behavior (as in Section 4.1) for
+   the client MUST adopt SVCB-reliant behavior (as in Section 5.1) for
    that RRSet.  This precludes the use of certain connections that Alt-
    Svc would otherwise allow, as discussed in Section 9.3 of [SVCB].
 
-5.1.  Security Considerations
+6.1.  Security Considerations
 
    A SVCB RRSet containing some RRs with "ech" and some without is
    vulnerable to a downgrade attack: a network intermediary can block
@@ -186,14 +200,13 @@ Table of Contents
    likelihood that ECH will be used in the absence of an active
    adversary.
 
-   Use of ECH yields an anonymity set of cardinality equal to the number
-   of ECH-enabled server domains supported by a given client-facing
-   server.  Thus, even with an encrypted ClientHello, an attacker who
-   can enumerate the set of ECH-enabled domains supported by a client-
-   facing server can guess the correct SNI with probability at least 1/
-   K, where K is the size of this ECH-enabled server anonymity set.
-   This probability may be increased via traffic analysis or other
-   mechanisms.
+   In an idealized deployment, ECH protects the SNI with an anonymity
+   set consisting of all the ECH-enabled server domains supported by a
+   given client-facing server.  Accordingly, an attacker who can
+   enumerate this set can always guess the encrypted SNI with
+   probability 1/K, where K is the number of domains in the set.  In
+   practice, this probability may be increased via traffic analysis,
+   popularity weighting, and other mechanisms.
 
    An attacker who can prevent SVCB resolution can deny clients any
    associated security benefits.  A hostile recursive resolver can
@@ -206,7 +219,7 @@ Table of Contents
    recommends that clients abandon the connection attempt when such an
    attack is detected.
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    IANA is instructed to modify the Service Binding (SVCB) Parameter
    Keys Registry entry for "ech" as follows:
@@ -221,23 +234,32 @@ Table of Contents
 
                                   Table 1
 
-7.  References
+8.  References
 
-7.1.  Normative References
+8.1.  Normative References
 
    [ECH]      Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
-              draft-ietf-tls-esni-18, 4 March 2024,
+              draft-ietf-tls-esni-20, 4 August 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
-              esni-18>.
+              esni-20>.
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
               <https://www.rfc-editor.org/rfc/rfc1034>.
 
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
    [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
               <https://www.rfc-editor.org/rfc/rfc4648>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
    [SVCB]     Schwartz, B. M., Bishop, M., and E. Nygren, "Service
               Binding and Parameter Specification via the DNS (SVCB and
@@ -246,7 +268,7 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-
               svcb-https-12>.
 
-7.2.  Informative References
+8.2.  Informative References
 
    [RFC7838]  Nottingham, M., McManus, P., and J. Reschke, "HTTP
               Alternative Services", RFC 7838, DOI 10.17487/RFC7838,
