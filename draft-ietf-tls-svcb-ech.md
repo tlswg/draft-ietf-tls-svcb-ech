@@ -96,7 +96,7 @@ An attacker who can prevent SVCB resolution can deny clients any associated secu
 
 # IANA Considerations
 
-IANA is instructed to modify the Service Binding (SVCB) Parameter Keys Registry entry for "ech" as follows:
+IANA is instructed to modify the Service Parameter Keys Registry entry for "ech" as follows:
 
 | Number      | Name            | Meaning                             | Format Reference                         | Change Controller |
 | ----------- | ------          | ----------------------              | ---------------------------------------- | ----------------- |
