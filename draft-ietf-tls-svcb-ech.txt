@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 21 February 2025                                      E. Nygren
+Expires: 24 February 2025                                      E. Nygren
                                                      Akamai Technologies
-                                                          20 August 2024
+                                                          23 August 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 February 2025.
+   This Internet-Draft will expire on 24 February 2025.
 
 Copyright Notice
 
@@ -212,8 +212,8 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
 6.  IANA Considerations
 
-   IANA is instructed to modify the Service Binding (SVCB) Parameter
-   Keys Registry entry for "ech" as follows:
+   IANA is instructed to modify the Service Parameter Keys Registry
+   entry for "ech" as follows:
 
       +========+======+====================+===========+============+
       | Number | Name | Meaning            | Format    | Change     |
