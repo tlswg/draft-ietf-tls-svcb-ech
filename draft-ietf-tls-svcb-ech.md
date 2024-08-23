@@ -42,6 +42,10 @@ The Service Bindings framework {{!SVCB=RFC9460}} allows server operators to publ
 
 This specification defines a new SvcParam to enable the use of TLS Encrypted ClientHello {{!ECH=I-D.ietf-tls-esni}} in TLS-based protocols.  This SvcParam can be used in SVCB, HTTPS or any future SVCB-compatible DNS records, and is intended to serve as the primary bootstrap mechanism for ECH.
 
+# Terminology
+
+{::boilerplate bcp14-tagged}
+
 # SvcParam for ECH configuration {#ech-param}
 
 The "ech" SvcParamKey is defined for conveying the ECH configuration of an alternative endpoint.  It is applicable to all schemes that use TLS-based protocols (including DTLS {{?RFC9147}} and QUIC version 1 {{?RFC9001}}) unless otherwise specified.
