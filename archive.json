@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-22T00:53:14.759341+00:00",
+  "timestamp": "2024-08-25T00:56:38.152600+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -546,6 +546,132 @@
           "body": "",
           "createdAt": "2024-08-20T13:28:13Z",
           "updatedAt": "2024-08-20T13:28:13Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOKaV2Rc55QW2l",
+      "title": "Add Terminology Section",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/12",
+      "state": "MERGED",
+      "author": "seanturner",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "ID-nits is throwing off an error:\r\n\r\n    ** The document seems to lack a both a reference to RFC 2119\r\n    and the recommended RFC 2119 boilerplate, even if it appears\r\n    to use RFC 2119 keywords.",
+      "createdAt": "2024-08-23T14:42:47Z",
+      "updatedAt": "2024-08-23T15:23:51Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "34a187869459997c194ebbb91ee21a4fe3da8e0d",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "seanturner-boilerplate",
+      "headRefOid": "3c3479cdeef58b2a19621b16b6c1c178babc27fe",
+      "closedAt": "2024-08-23T15:23:48Z",
+      "mergedAt": "2024-08-23T15:23:48Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "e578159e8a5c01c0b35866f3007429f13c488316"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6GjvHE",
+          "commit": {
+            "abbreviatedOid": "3c3479c"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-23T15:23:45Z",
+          "updatedAt": "2024-08-23T15:23:45Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOKaV2Rc55Qfqu",
+      "title": "Update SVCB ref to RFC 9460",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/13",
+      "state": "MERGED",
+      "author": "seanturner",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "s/I-D.ietf-dnsop-svcb-https/RFC9460",
+      "createdAt": "2024-08-23T15:04:27Z",
+      "updatedAt": "2024-08-23T15:23:14Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "34a187869459997c194ebbb91ee21a4fe3da8e0d",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "seanturner-add_RFC9460_ref",
+      "headRefOid": "b7ed2a38ec841c61b614b4f76ce8ade7ef70e951",
+      "closedAt": "2024-08-23T15:23:11Z",
+      "mergedAt": "2024-08-23T15:23:11Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "3b1073847ce96fd27e25a20618db870743071b8f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6GjuyF",
+          "commit": {
+            "abbreviatedOid": "b7ed2a3"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-23T15:23:07Z",
+          "updatedAt": "2024-08-23T15:23:07Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOKaV2Rc55QmVT",
+      "title": "Update registry name",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/14",
+      "state": "MERGED",
+      "author": "seanturner",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Technically, the registry is called \"Service Parameter Keys\"; see https://www.iana.org/assignments/dns-svcb/dns-svcb.xhtml#dns-svcparamkeys.",
+      "createdAt": "2024-08-23T15:21:05Z",
+      "updatedAt": "2024-08-23T15:22:28Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "34a187869459997c194ebbb91ee21a4fe3da8e0d",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "seanturner-reg_name",
+      "headRefOid": "95081772e5f93ccc3986ddb5acff631e16d04d80",
+      "closedAt": "2024-08-23T15:22:24Z",
+      "mergedAt": "2024-08-23T15:22:24Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "4331bf674960acfae8187ddaedb8110440c6ab2b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6GjuWZ",
+          "commit": {
+            "abbreviatedOid": "9508177"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-23T15:22:18Z",
+          "updatedAt": "2024-08-23T15:22:18Z",
           "comments": []
         }
       ]
