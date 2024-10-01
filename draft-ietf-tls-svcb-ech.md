@@ -38,7 +38,7 @@ To use TLS Encrypted ClientHello (ECH) the client needs to learn the ECH configu
 
 # Overview
 
-The Service Bindings framework {{!SVCB=RFC9460}} allows server operators to publish a detailed description of their service in the Domain Name System {{!RFC1034}}{{?RFC9499}} using SVCB or HTTPS records.  Each SVCB record describes a single "alternative endpoint", and contains a collection of "SvcParams" that can be extended with new kinds of information that may be of interest to a client.  Clients can use the SvcParams to improve the privacy, security, and performance of their connection to this endpoint.
+The Service Bindings framework {{!SVCB=RFC9460}} allows server operators to publish a detailed description of their service in the Domain Name System (see {{!RFC1034}}, {{?BCP219}}) using SVCB or HTTPS records.  Each SVCB record describes a single "alternative endpoint", and contains a collection of "SvcParams" that can be extended with new kinds of information that may be of interest to a client.  Clients can use the SvcParams to improve the privacy, security, and performance of their connection to this endpoint.
 
 This specification defines a new SvcParam to enable the use of TLS Encrypted ClientHello {{!ECH=I-D.ietf-tls-esni}} in TLS-based protocols.  This SvcParam can be used in SVCB, HTTPS or any future SVCB-compatible DNS records, and is intended to serve as the primary bootstrap mechanism for ECH.
 
