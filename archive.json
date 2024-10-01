@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-29T01:02:22.704373+00:00",
+  "timestamp": "2024-10-01T01:03:15.879487+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -673,6 +673,79 @@
           "createdAt": "2024-08-23T15:22:18Z",
           "updatedAt": "2024-08-23T15:22:18Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOKaV2Rc59JZAu",
+      "title": "Improve references",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/15",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As suggested by Paul Wouters's AD review.",
+      "createdAt": "2024-09-30T16:54:14Z",
+      "updatedAt": "2024-09-30T16:54:15Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "e578159e8a5c01c0b35866f3007429f13c488316",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-wouters-review",
+      "headRefOid": "6bcedd00d44af5bc77b65e8c2ef9b5cf155f493f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOKaV2Rc59KSLI",
+      "title": "Discuss the impact of resolver selection on security",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/16",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-09-30T19:11:39Z",
+      "updatedAt": "2024-09-30T20:08:25Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "e578159e8a5c01c0b35866f3007429f13c488316",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-resolver-choice",
+      "headRefOid": "2d5a57a98e4c094b325a9d0b0faead6eda494147",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6LYkIo",
+          "commit": {
+            "abbreviatedOid": "2d5a57a"
+          },
+          "author": "richsalz",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-30T20:08:25Z",
+          "updatedAt": "2024-09-30T20:08:25Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "looks good to me.",
+              "createdAt": "2024-09-30T20:08:25Z",
+              "updatedAt": "2024-09-30T20:08:25Z"
+            }
+          ]
         }
       ]
     }
