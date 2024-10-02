@@ -38,7 +38,7 @@ To use TLS Encrypted ClientHello (ECH) the client needs to learn the ECH configu
 
 # Overview
 
-The Service Bindings framework {{!SVCB=RFC9460}} allows server operators to publish a detailed description of their service in the Domain Name System {{!RFC1034}} using SVCB or HTTPS records.  Each SVCB record describes a single "alternative endpoint", and contains a collection of "SvcParams" that can be extended with new kinds of information that may be of interest to a client.  Clients can use the SvcParams to improve the privacy, security, and performance of their connection to this endpoint.
+The Service Bindings framework {{!SVCB=RFC9460}} allows server operators to publish a detailed description of their service in the Domain Name System (see {{!RFC1034}}, {{?BCP219}}) using SVCB or HTTPS records.  Each SVCB record describes a single "alternative endpoint", and contains a collection of "SvcParams" that can be extended with new kinds of information that may be of interest to a client.  Clients can use the SvcParams to improve the privacy, security, and performance of their connection to this endpoint.
 
 This specification defines a new SvcParam to enable the use of TLS Encrypted ClientHello {{!ECH=I-D.ietf-tls-esni}} in TLS-based protocols.  This SvcParam can be used in SVCB, HTTPS or any future SVCB-compatible DNS records, and is intended to serve as the primary bootstrap mechanism for ECH.
 
@@ -60,7 +60,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
 # Server behavior
 
-When publishing a record containing an "ech" parameter, the publisher MUST ensure that all IP addresses of TargetName correspond to servers that have access to the corresponding private key or are authoritative for the public name. (See {{Section 7.2.2 of !ECH}} for more details about the public name.)  Otherwise, connections will fail entirely.
+When publishing a record containing an "ech" parameter, the publisher MUST ensure that all IP addresses of TargetName correspond to servers that have access to the corresponding private key or are authoritative for the public name. (See {{Sections 6.1.7 and 8.1.1 of !ECH}} for requirements related to the public name.)  Otherwise, connections will fail entirely.
 
 These servers SHOULD support a protocol version that is compatible with ECH.  At the time of writing, the compatible versions are TLS 1.3, DTLS 1.3, and QUIC version 1.  If the server does not support a compatible version, each connection attempt will have to be retried, delaying the connection and wasting resources.
 
@@ -96,7 +96,7 @@ A SVCB RRSet containing some RRs with "ech" and some without is vulnerable to a 
 
 In an idealized deployment, ECH protects the SNI with an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server. Accordingly, an attacker who can enumerate this set can always guess the encrypted SNI with probability 1/K, where K is the number of domains in the set. In practice, this probability may be increased via traffic analysis, popularity weighting, and other mechanisms.
 
-An attacker who can prevent SVCB resolution can deny clients any associated security benefits. A hostile recursive resolver can always deny service to SVCB queries, but network intermediaries can often prevent resolution as well, even when the client and recursive resolver validate DNSSEC and use a secure transport. These downgrade attacks can prevent a client from being aware that "ech" is configured which could result in the client sending the ClientHello in cleartext. To prevent downgrades, {{Section 3.1 of !SVCB}} recommends that clients abandon the connection attempt when such an attack is detected.
+An attacker who can prevent SVCB resolution can deny clients any associated security benefits. A hostile recursive resolver can always deny service to SVCB queries, but network intermediaries can often prevent resolution as well, even when the client and recursive resolver validate DNSSEC {{!RFC9364}} and use a secure transport. These downgrade attacks can prevent a client from being aware that "ech" is configured which could result in the client sending the ClientHello in cleartext. To prevent downgrades, {{Section 3.1 of !SVCB}} recommends that clients abandon the connection attempt when such an attack is detected.
 
 # IANA Considerations
 
