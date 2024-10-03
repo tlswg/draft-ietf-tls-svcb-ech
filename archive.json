@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-01T01:03:15.879487+00:00",
+  "timestamp": "2024-10-03T00:57:36.012067+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -681,26 +681,42 @@
       "id": "PR_kwDOKaV2Rc59JZAu",
       "title": "Improve references",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/15",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "As suggested by Paul Wouters's AD review.",
       "createdAt": "2024-09-30T16:54:14Z",
-      "updatedAt": "2024-09-30T16:54:15Z",
+      "updatedAt": "2024-10-02T13:33:37Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "e578159e8a5c01c0b35866f3007429f13c488316",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-wouters-review",
-      "headRefOid": "6bcedd00d44af5bc77b65e8c2ef9b5cf155f493f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "66b8e77a00df3a3001a71c6904f58b8828c68e73",
+      "closedAt": "2024-10-02T13:33:33Z",
+      "mergedAt": "2024-10-02T13:33:33Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "481a5ce95f2d879a89f2eb73ec6102863295b722"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6LgMis",
+          "commit": {
+            "abbreviatedOid": "6bcedd0"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-01T14:03:14Z",
+          "updatedAt": "2024-10-01T14:03:14Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 16,
@@ -714,13 +730,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-09-30T19:11:39Z",
-      "updatedAt": "2024-09-30T20:08:25Z",
+      "updatedAt": "2024-10-01T21:26:35Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "e578159e8a5c01c0b35866f3007429f13c488316",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-resolver-choice",
-      "headRefOid": "2d5a57a98e4c094b325a9d0b0faead6eda494147",
+      "headRefOid": "82ec9404f9c58ec0d73b057d38f3907609f32e55",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -744,6 +760,92 @@
               "body": "looks good to me.",
               "createdAt": "2024-09-30T20:08:25Z",
               "updatedAt": "2024-09-30T20:08:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6LgOSf",
+          "commit": {
+            "abbreviatedOid": "2d5a57a"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-01T14:05:46Z",
+          "updatedAt": "2024-10-01T14:06:00Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Content is good, but the comma makes the second sentence parse oddly.  What about...\r\n\r\n```suggestion\r\nThe name of the destination domain is protected from disclosure by ECH, but it is still revealed by the DNS queries used to reach the server.  To achieve the security goals from {{Section 10.1 of !ECH}}, clients for this specification SHOULD make queries over an authenticated and encrypted connection to a DNS resolver that they trust to preserve the confidentiality of their queries and return authentic answers.\r\n```",
+              "createdAt": "2024-10-01T14:05:46Z",
+              "updatedAt": "2024-10-01T14:06:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6LgoC7",
+          "commit": {
+            "abbreviatedOid": "2d5a57a"
+          },
+          "author": "paulwouters",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:43:50Z",
+          "updatedAt": "2024-10-01T14:47:28Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "I would say \"from disclosure in the TLS protocol by ECH\"",
+              "createdAt": "2024-10-01T14:43:50Z",
+              "updatedAt": "2024-10-01T14:47:28Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "and amaybe \"to resolve the server\" instead of \"to reach\" which is kinda vague and weird",
+              "createdAt": "2024-10-01T14:47:04Z",
+              "updatedAt": "2024-10-01T14:47:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6LkE6M",
+          "commit": {
+            "abbreviatedOid": "2d5a57a"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T21:26:10Z",
+          "updatedAt": "2024-10-01T21:26:10Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "OK, I've incorporated those changes.",
+              "createdAt": "2024-10-01T21:26:10Z",
+              "updatedAt": "2024-10-01T21:26:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6LkFCp",
+          "commit": {
+            "abbreviatedOid": "2d5a57a"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T21:26:35Z",
+          "updatedAt": "2024-10-01T21:26:35Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "OK, I've incorporated a version of this wording.",
+              "createdAt": "2024-10-01T21:26:35Z",
+              "updatedAt": "2024-10-01T21:26:35Z"
             }
           ]
         }
