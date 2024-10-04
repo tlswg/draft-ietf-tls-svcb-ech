@@ -209,7 +209,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
    popularity weighting, and other mechanisms.
 
    ECH ensures that TLS does not disclose the SNI, but the same
-   information is also revealed in the DNS queries used to resolve the
+   information is also present in the DNS queries used to resolve the
    server's hostname.  This specification does not conceal the server
    name from the DNS resolver.  If DNS messages are sent between the
    client and resolver without authenticated encryption, an attacker on
