@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 4 April 2025                                          E. Nygren
+Expires: 7 April 2025                                          E. Nygren
                                                      Akamai Technologies
-                                                          1 October 2024
+                                                          4 October 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 April 2025.
+   This Internet-Draft will expire on 7 April 2025.
 
 Copyright Notice
 
@@ -210,11 +210,10 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
    ECH ensures that TLS does not disclose the SNI, but the same
    information is also revealed in the DNS queries used to resolve the
-   server's hostname.  To achieve the security goals from Section 10.1
-   of [ECH], clients for this specification SHOULD use an authenticated
-   and encrypted connection to a DNS resolver that they trust to
-   preserve the confidentiality of their queries and return authentic
-   answers.
+   server's hostname.  This specification does not conceal the server
+   name from the DNS resolver.  If DNS messages are sent between the
+   client and resolver without authenticated encryption, an attacker on
+   this path can also learn the destination server name.
 
    An attacker who can prevent SVCB resolution can deny clients any
    associated security benefits.  A hostile recursive resolver can
