@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-03T00:57:36.012067+00:00",
+  "timestamp": "2024-10-06T01:02:11.467164+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -730,13 +730,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-09-30T19:11:39Z",
-      "updatedAt": "2024-10-01T21:26:35Z",
+      "updatedAt": "2024-10-05T14:17:55Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "e578159e8a5c01c0b35866f3007429f13c488316",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-resolver-choice",
-      "headRefOid": "82ec9404f9c58ec0d73b057d38f3907609f32e55",
+      "headRefOid": "6b90e8568fa8913631b1c4006e196dad227eefda",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -846,6 +846,179 @@
               "body": "OK, I've incorporated a version of this wording.",
               "createdAt": "2024-10-01T21:26:35Z",
               "updatedAt": "2024-10-01T21:26:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6L9_47",
+          "commit": {
+            "abbreviatedOid": "d053872"
+          },
+          "author": "richsalz",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T14:56:36Z",
+          "updatedAt": "2024-10-04T14:56:37Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "s/is also/can also be/ ?",
+              "createdAt": "2024-10-04T14:56:37Z",
+              "updatedAt": "2024-10-04T14:56:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6L-IsN",
+          "commit": {
+            "abbreviatedOid": "d053872"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T15:13:08Z",
+          "updatedAt": "2024-10-04T15:13:09Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "It sounds like you're reading \"reveal\" as \"reveal to an attacker\", whereas I meant \"reveal to whoever can read it\" (and at least the resolver must be able to read it!).  Maybe there's another way to clarify that...",
+              "createdAt": "2024-10-04T15:13:08Z",
+              "updatedAt": "2024-10-04T15:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6L-QlC",
+          "commit": {
+            "abbreviatedOid": "d053872"
+          },
+          "author": "richsalz",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T15:29:00Z",
+          "updatedAt": "2024-10-04T15:29:01Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Yes.  How about s/is also revealed/is also given/ ?",
+              "createdAt": "2024-10-04T15:29:00Z",
+              "updatedAt": "2024-10-04T15:29:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MAXfO",
+          "commit": {
+            "abbreviatedOid": "d053872"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T19:01:29Z",
+          "updatedAt": "2024-10-04T19:01:30Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I changed \"is also revealed\" to \"is also present\".",
+              "createdAt": "2024-10-04T19:01:29Z",
+              "updatedAt": "2024-10-04T19:01:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MAYnm",
+          "commit": {
+            "abbreviatedOid": "d053872"
+          },
+          "author": "richsalz",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T19:04:41Z",
+          "updatedAt": "2024-10-04T19:04:41Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Good catch.",
+              "createdAt": "2024-10-04T19:04:41Z",
+              "updatedAt": "2024-10-04T19:04:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MAYxp",
+          "commit": {
+            "abbreviatedOid": "1334da2"
+          },
+          "author": "richsalz",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-04T19:05:05Z",
+          "updatedAt": "2024-10-04T19:05:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MAbiU",
+          "commit": {
+            "abbreviatedOid": "1334da2"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T19:11:23Z",
+          "updatedAt": "2024-10-04T19:11:23Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nECH ensures that TLS does not disclose the SNI, but the same information is also present in the DNS queries used to resolve the server's hostname.  This specification does not conceal the server name from the DNS resolver.  If DNS messages are sent between the client and resolver without authenticated encryption, an attacker on this path can also learn the destination server name.  A similar exposure applies when the DNS resolver is closely correlated with the requesting client, as an on path attacker may be able to infer the destination server name or information about it by observing traffic to DNS authorities.\r\n```",
+              "createdAt": "2024-10-04T19:11:23Z",
+              "updatedAt": "2024-10-04T19:11:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MB5Sl",
+          "commit": {
+            "abbreviatedOid": "1334da2"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T21:48:23Z",
+          "updatedAt": "2024-10-04T21:48:23Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "OK, I added \"A similar attack applies if the client can be linked to a request from the resolver to a DNS authority.\"",
+              "createdAt": "2024-10-04T21:48:23Z",
+              "updatedAt": "2024-10-04T21:48:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MAcyw",
+          "commit": {
+            "abbreviatedOid": "6b90e85"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T19:12:13Z",
+          "updatedAt": "2024-10-05T14:17:55Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Would we want to go into more detail, or just reference https://datatracker.ietf.org/doc/html/rfc9076 (DNS privacy considerations)?",
+              "createdAt": "2024-10-04T19:12:13Z",
+              "updatedAt": "2024-10-05T14:17:55Z"
             }
           ]
         }
