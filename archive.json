@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-06T01:02:11.467164+00:00",
+  "timestamp": "2024-10-08T00:57:43.299009+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -150,6 +150,22 @@
       "createdAt": "2024-07-24T04:35:46Z",
       "updatedAt": "2024-08-13T18:44:19Z",
       "closedAt": "2024-08-13T18:44:18Z",
+      "comments": []
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOKaV2Rc6ZGyuq",
+      "title": "Add some examples (and perhaps operational considerations) especially for the Multi-CDN case",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/17",
+      "state": "OPEN",
+      "author": "enygren",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Some questions from implementers indicate that it would be helpful to both have examples\r\nas well as operational considerations that makes it clear how to use this in a multiCDN scenario.\r\nIn-particular, examples showing how if there are multiple ECH keys supported by different sets of servers\r\nthen they need to have distinct TargetNames.\r\n",
+      "createdAt": "2024-10-06T14:38:57Z",
+      "updatedAt": "2024-10-06T14:38:57Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -730,13 +746,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-09-30T19:11:39Z",
-      "updatedAt": "2024-10-05T14:17:55Z",
+      "updatedAt": "2024-10-07T16:10:28Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
-      "baseRefOid": "e578159e8a5c01c0b35866f3007429f13c488316",
+      "baseRefOid": "481a5ce95f2d879a89f2eb73ec6102863295b722",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-resolver-choice",
-      "headRefOid": "6b90e8568fa8913631b1c4006e196dad227eefda",
+      "headRefOid": "153677fede90d7c627b679cb338bfef681b74612",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -1021,6 +1037,19 @@
               "updatedAt": "2024-10-05T14:17:55Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MG4qr",
+          "commit": {
+            "abbreviatedOid": "6b90e85"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-06T22:36:08Z",
+          "updatedAt": "2024-10-06T22:36:08Z",
+          "comments": []
         }
       ]
     }
