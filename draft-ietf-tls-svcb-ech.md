@@ -90,11 +90,13 @@ Origins that publish an "ech" SvcParam in their HTTPS record SHOULD also publish
 
 If all HTTPS records for an alt-authority contain "ech" SvcParams, the client MUST adopt SVCB-reliant behavior (as in {{disabling-fallback}}) for that RRSet.  This precludes the use of certain connections that Alt-Svc would otherwise allow, as discussed in {{Section 9.3 of !SVCB}}.
 
-## Security Considerations
+# Security Considerations
 
 A SVCB RRSet containing some RRs with "ech" and some without is vulnerable to a downgrade attack: a network intermediary can block connections to the endpoints that support ECH, causing the client to fall back to a non-ECH endpoint.  This configuration is NOT RECOMMENDED. Zone owners who do use such a mixed configuration SHOULD mark the RRs with "ech" as more preferred (i.e. lower SvcPriority value) than those without, in order to maximize the likelihood that ECH will be used in the absence of an active adversary.
 
 In an idealized deployment, ECH protects the SNI with an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server. Accordingly, an attacker who can enumerate this set can always guess the encrypted SNI with probability 1/K, where K is the number of domains in the set. In practice, this probability may be increased via traffic analysis, popularity weighting, and other mechanisms.
+
+ECH ensures that TLS does not disclose the SNI, but the same information is also present in the DNS queries used to resolve the server's hostname.  This specification does not conceal the server name from the DNS resolver.  If DNS messages are sent between the client and resolver without authenticated encryption, an attacker on this path can also learn the destination server name.  A similar attack applies if the client can be linked to a request from the resolver to a DNS authority.
 
 An attacker who can prevent SVCB resolution can deny clients any associated security benefits. A hostile recursive resolver can always deny service to SVCB queries, but network intermediaries can often prevent resolution as well, even when the client and recursive resolver validate DNSSEC {{!RFC9364}} and use a secure transport. These downgrade attacks can prevent a client from being aware that "ech" is configured which could result in the client sending the ClientHello in cleartext. To prevent downgrades, {{Section 3.1 of !SVCB}} recommends that clients abandon the connection attempt when such an attack is detected.
 
