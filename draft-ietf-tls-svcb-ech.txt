@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 5 April 2025                                          E. Nygren
+Expires: 12 April 2025                                         E. Nygren
                                                      Akamai Technologies
-                                                          2 October 2024
+                                                          9 October 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 April 2025.
+   This Internet-Draft will expire on 12 April 2025.
 
 Copyright Notice
 
@@ -62,11 +62,11 @@ Table of Contents
      5.2.  ClientHello construction
      5.3.  Performance optimizations
    6.  Interaction with HTTP Alt-Svc
-     6.1.  Security Considerations
-   7.  IANA Considerations
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Authors' Addresses
 
 1.  Overview
@@ -188,7 +188,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
    that RRSet.  This precludes the use of certain connections that Alt-
    Svc would otherwise allow, as discussed in Section 9.3 of [SVCB].
 
-6.1.  Security Considerations
+7.  Security Considerations
 
    A SVCB RRSet containing some RRs with "ech" and some without is
    vulnerable to a downgrade attack: a network intermediary can block
@@ -208,6 +208,15 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
    practice, this probability may be increased via traffic analysis,
    popularity weighting, and other mechanisms.
 
+   ECH ensures that TLS does not disclose the SNI, but the same
+   information is also present in the DNS queries used to resolve the
+   server's hostname.  This specification does not conceal the server
+   name from the DNS resolver.  If DNS messages are sent between the
+   client and resolver without authenticated encryption, an attacker on
+   this path can also learn the destination server name.  A similar
+   attack applies if the client can be linked to a request from the
+   resolver to a DNS authority.
+
    An attacker who can prevent SVCB resolution can deny clients any
    associated security benefits.  A hostile recursive resolver can
    always deny service to SVCB queries, but network intermediaries can
@@ -219,7 +228,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
    recommends that clients abandon the connection attempt when such an
    attack is detected.
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    IANA is instructed to modify the Service Parameter Keys Registry
    entry for "ech" as follows:
@@ -234,9 +243,9 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
                                   Table 1
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [ECH]      Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
@@ -270,7 +279,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
               Resource Records)", RFC 9460, DOI 10.17487/RFC9460,
               November 2023, <https://www.rfc-editor.org/rfc/rfc9460>.
 
-8.2.  Informative References
+9.2.  Informative References
 
    [BCP219]   Best Current Practice 219,
               <https://www.rfc-editor.org/info/bcp219>.
