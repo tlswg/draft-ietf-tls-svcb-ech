@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T00:57:43.299009+00:00",
+  "timestamp": "2024-10-10T00:57:27.142100+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -739,24 +739,26 @@
       "id": "PR_kwDOKaV2Rc59KSLI",
       "title": "Discuss the impact of resolver selection on security",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/16",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-09-30T19:11:39Z",
-      "updatedAt": "2024-10-07T16:10:28Z",
+      "updatedAt": "2024-10-09T13:48:30Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "481a5ce95f2d879a89f2eb73ec6102863295b722",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-resolver-choice",
       "headRefOid": "153677fede90d7c627b679cb338bfef681b74612",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-09T13:48:26Z",
+      "mergedAt": "2024-10-09T13:48:26Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "b3034861d3b683e2f163fd8573171515177f49f0"
+      },
       "comments": [],
       "reviews": [
         {
@@ -1049,6 +1051,19 @@
           "body": "",
           "createdAt": "2024-10-06T22:36:08Z",
           "updatedAt": "2024-10-06T22:36:08Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6MgAb6",
+          "commit": {
+            "abbreviatedOid": "153677f"
+          },
+          "author": "paulwouters",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-09T13:40:06Z",
+          "updatedAt": "2024-10-09T13:40:06Z",
           "comments": []
         }
       ]
