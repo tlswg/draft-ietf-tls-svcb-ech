@@ -56,7 +56,7 @@ In wire format, the value of the parameter is an ECHConfigList ({{Section 4 of !
 ech="AEj+DQBEAQAgACAdd+scUi0IYFsXnUIU7ko2Nd9+F8M26pAGZVpz/KrWPgAEAAEAAWQ
 VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 ~~~
-{: title="ECH SvcParam with a public_name of "ech-sites.example.com"}
+{: title="ECH SvcParam with a public_name of "ech-sites.example.com""}
 
 # Server behavior
 
@@ -89,6 +89,84 @@ HTTP clients that implement both HTTP Alt-Svc {{?RFC7838}} and the HTTPS record 
 Origins that publish an "ech" SvcParam in their HTTPS record SHOULD also publish an HTTPS record with the "ech" SvcParam for every alt-authority offered in its Alt-Svc Field Values.  Otherwise, clients might reveal the name of the server in an unencrypted ClientHello to an alt-authority.
 
 If all HTTPS records for an alt-authority contain "ech" SvcParams, the client MUST adopt SVCB-reliant behavior (as in {{disabling-fallback}}) for that RRSet.  This precludes the use of certain connections that Alt-Svc would otherwise allow, as discussed in {{Section 9.3 of !SVCB}}.
+
+# Examples
+
+~~~
+$ORIGIN simple.example. ; Simple example zone
+@ 300 IN A     192.0.2.1
+         AAAA  2001:db8::1
+         HTTPS 1 . ech=ABC...
+www 300 IN A 192.0.2.1
+           AAAA 2001:db8::1
+           HTTPS 1 . ech=ABC...
+~~~
+{: title="Simple example zone with the same configuration on the apex and web domain."}
+
+~~~
+$ORIGIN cdn.example. ; CDN operator zone
+pool 300 IN A 192.0.2.1
+            AAAA 2001:db8::1
+            HTTPS 1 . ech=ABC...
+
+$ORIGIN customer.example. ; CDN customer's zone
+@   3600 IN HTTPS 0 pool.cdn.example.
+; Apex IP records for compatibility with clients that do not support
+; HTTPS records.
+@   300  IN A    192.0.2.1
+            AAAA 2001:db8::1
+
+www 300  IN CNAME pool.cdn.example.
+~~~
+{: title="ECH usage pattern for an aliasing-based CDN."}
+
+~~~
+$ORIGIN secret.example. ; High confidentiality zone
+www     3600 IN HTTPS 1 backend ech=ABC... mandatory=ech
+backend 300  IN A     192.0.2.1
+                AAAA  2001:db8::1
+~~~
+{: title="A domain that is only reachable using ECH."}
+
+~~~
+$ORIGIN cdn1.example. ; First CDN operator zone
+pool 300 IN A 192.0.2.1
+            AAAA 2001:db8::1
+            HTTPS 1 . ech=ABC...
+
+$ORIGIN cdn2.example. ; Second CDN operator zone
+pool 300 IN A 192.0.2.2
+            AAAA 2001:db8::2
+            HTTPS 1 . ech=DEF...
+
+;; Multi-CDN customer zone
+$ORIGIN customer.example. ; Multi-CDN customer's zone
+; In this configuration, the customer is combining HTTPS
+; records from the CDNs' zones, with appropriate modifications.
+; Automation is required to keep these records consistent with
+; the original records in the CDN providers' zones.
+@   3600 IN HTTPS 1 pool.cdn1.example. ech=ABC...
+            HTTPS 1 pool.cdn2.example. ech=DEF...
+; Apex IP records for compatibility with clients that do not support
+; HTTPS records.
+@   300  IN A    192.0.2.1
+            A    192.0.2.2
+            AAAA 2001:db8::1
+            AAAA 2001:db8::2
+
+www 3600  IN CNAME @
+~~~
+{: title="Multi-CDN configuration, preferring one CDN and using the second via client-side failover."}
+
+~~~
+$ORIGIN dns.example. ; DNS server example.
+@    3600 IN A     192.0.2.1
+             AAAA  2001:db8::1
+             HTTPS 1 . ech=ABC... alpn=h3 dohpath=/q{?dns"}
+
+_dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
+~~~
+{: title="Example of a DNS server that supports ECH."}
 
 # Security Considerations
 
