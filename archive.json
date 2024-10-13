@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-10T00:57:27.142100+00:00",
+  "timestamp": "2024-10-13T01:01:41.479886+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -1065,6 +1065,112 @@
           "createdAt": "2024-10-09T13:40:06Z",
           "updatedAt": "2024-10-09T13:40:06Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOKaV2Rc5-WdOB",
+      "title": "Add a variety of examples",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/18",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #17",
+      "createdAt": "2024-10-11T14:30:34Z",
+      "updatedAt": "2024-10-11T17:42:58Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "b3034861d3b683e2f163fd8573171515177f49f0",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-examples",
+      "headRefOid": "03ad4ce80109a426eeb2741118ce892d7c180173",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6M3LJG",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:24:40Z",
+          "updatedAt": "2024-10-11T17:24:41Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "What does a CNAME to @ mean here?  Following what we did in rfc9460:\r\n\r\n```suggestion\r\n; some times containing\r\nwww 3600  IN CNAME pool.cdn1.example.\r\n; other times containing\r\nwww 3600  IN CNAME pool.cdn2.example.\r\n```\r\n\r\n",
+              "createdAt": "2024-10-11T17:24:40Z",
+              "updatedAt": "2024-10-11T17:24:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6M3N8i",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:32:23Z",
+          "updatedAt": "2024-10-11T17:32:23Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "Another example to add for Stephen Farrell's question might be different servers with different ECH values:\r\n\r\n```suggestion\r\n\r\n~~~\r\n$ORIGIN heterogeneous.example. ; Example zone with two pools of servers\r\npool1 300 IN A     192.0.2.1\r\n              AAAA  2001:db8::1\r\npool2 300 IN A     192.0.2.2\r\n              AAAA  2001:db8::2\r\nservice         HTTPS 1 pool1 ech=ABC...\r\nservice         HTTPS 1 pool2 ech=DEF...\r\n~~~\r\n{: title=\"Service at service.heterogeneous.example. that round-robins between two server pools with different configurations\"}\r\n```\r\n\r\nThis is perhaps the next \"most simple\" example that leads into the next ones.",
+              "createdAt": "2024-10-11T17:32:23Z",
+              "updatedAt": "2024-10-11T17:32:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6M3OK0",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks for writing these.  These otherwise LGTM.",
+          "createdAt": "2024-10-11T17:33:00Z",
+          "updatedAt": "2024-10-11T17:33:00Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6M3Q2n",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-11T17:40:11Z",
+          "updatedAt": "2024-10-11T17:42:58Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "CNAME to @ reuses the apex records, which saves 5 lines in this example.  Maybe I'm not understanding the question.\r\n\r\nNote that this example is showing \"merged\" multi-CDN, as opposed to \"selected\" multi-CDN, which is what we showed in RFC 9460.",
+              "createdAt": "2024-10-11T17:40:11Z",
+              "updatedAt": "2024-10-11T17:42:58Z"
+            },
+            {
+              "originalPosition": 25,
+              "body": "This example doesn't have any address records for `service`, so it's inaccessible to non-SVCB clients.\r\n\r\nIt's not clear to me what this is demonstrating that isn't clear from the multi-CDN example.",
+              "createdAt": "2024-10-11T17:42:51Z",
+              "updatedAt": "2024-10-11T17:42:58Z"
+            }
+          ]
         }
       ]
     }
