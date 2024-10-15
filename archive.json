@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-13T01:01:41.479886+00:00",
+  "timestamp": "2024-10-15T00:58:36.464315+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -1080,7 +1080,7 @@
       "labels": [],
       "body": "Fixes #17",
       "createdAt": "2024-10-11T14:30:34Z",
-      "updatedAt": "2024-10-11T17:42:58Z",
+      "updatedAt": "2024-10-14T12:58:29Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b3034861d3b683e2f163fd8573171515177f49f0",
