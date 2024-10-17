@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-15T00:58:36.464315+00:00",
+  "timestamp": "2024-10-17T00:57:49.960822+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -1080,7 +1080,7 @@
       "labels": [],
       "body": "Fixes #17",
       "createdAt": "2024-10-11T14:30:34Z",
-      "updatedAt": "2024-10-14T12:58:29Z",
+      "updatedAt": "2024-10-16T19:07:32Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b3034861d3b683e2f163fd8573171515177f49f0",
@@ -1091,7 +1091,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "seanturner",
+          "authorAssociation": "NONE",
+          "body": "@bemasc @enygren merge when ready; see [email](https://mailarchive.ietf.org/arch/msg/tls/MHuPbJWXTUvXhIto1wSth3c2_Eo/).",
+          "createdAt": "2024-10-16T19:07:30Z",
+          "updatedAt": "2024-10-16T19:07:30Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKaV2Rc6M3LJG",
@@ -1169,6 +1177,46 @@
               "body": "This example doesn't have any address records for `service`, so it's inaccessible to non-SVCB clients.\r\n\r\nIt's not clear to me what this is demonstrating that isn't clear from the multi-CDN example.",
               "createdAt": "2024-10-11T17:42:51Z",
               "updatedAt": "2024-10-11T17:42:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6NQs51",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "paulwouters",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T16:34:13Z",
+          "updatedAt": "2024-10-15T16:34:13Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "I thought one of the points of the HTTPS record was that you didn have to keep manually adding A/AAAA sync ups between the apex and www. of a zone ?",
+              "createdAt": "2024-10-15T16:34:13Z",
+              "updatedAt": "2024-10-15T16:34:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6NSXh1",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T19:42:24Z",
+          "updatedAt": "2024-10-15T19:42:24Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "HTTPS records allow apex aliasing (as in the next example), but only for clients that support HTTPS records.  These examples mostly assume that compatibility with non-HTTPS-record-aware clients is required.\r\n\r\nIn this case, we could avoid duplicating the A/AAAA records by making `www` a CNAME to the apex (as in the multi-CDN example), but I thought that might not be the best choice for our simplest example.",
+              "createdAt": "2024-10-15T19:42:24Z",
+              "updatedAt": "2024-10-15T19:42:24Z"
             }
           ]
         }
