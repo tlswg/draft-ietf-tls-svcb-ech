@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-17T00:57:49.960822+00:00",
+  "timestamp": "2024-10-20T01:03:06.224529+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -1080,7 +1080,7 @@
       "labels": [],
       "body": "Fixes #17",
       "createdAt": "2024-10-11T14:30:34Z",
-      "updatedAt": "2024-10-16T19:07:32Z",
+      "updatedAt": "2024-10-19T14:05:59Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b3034861d3b683e2f163fd8573171515177f49f0",
@@ -1135,9 +1135,9 @@
           "comments": [
             {
               "originalPosition": 25,
-              "body": "Another example to add for Stephen Farrell's question might be different servers with different ECH values:\r\n\r\n```suggestion\r\n\r\n~~~\r\n$ORIGIN heterogeneous.example. ; Example zone with two pools of servers\r\npool1 300 IN A     192.0.2.1\r\n              AAAA  2001:db8::1\r\npool2 300 IN A     192.0.2.2\r\n              AAAA  2001:db8::2\r\nservice         HTTPS 1 pool1 ech=ABC...\r\nservice         HTTPS 1 pool2 ech=DEF...\r\n~~~\r\n{: title=\"Service at service.heterogeneous.example. that round-robins between two server pools with different configurations\"}\r\n```\r\n\r\nThis is perhaps the next \"most simple\" example that leads into the next ones.",
+              "body": "Another example to add for Stephen Farrell's question might be different servers with different ECH values:\r\n\r\n```suggestion\r\n\r\n~~~\r\n$ORIGIN heterogeneous.example. ; Example zone with two pools of servers\r\npool1 300 IN A     192.0.2.1\r\n              AAAA  2001:db8:1::a\r\n              AAAA  2001:db8:1::b\r\n              AAAA  2001:db8:1::c\r\npool2 300 IN A     192.0.2.2\r\n              AAAA  2001:db8:2::a\r\n              AAAA  2001:db8:2::b\r\nservice         SVCB 1 pool1 ech=ABC...\r\nservice         SVCB 1 pool2 ech=DEF...\r\n~~~\r\n{: title=\"Service at service.heterogeneous.example. that round-robins between two server pools with different configurations.  Only supports clients which are SVCB-aware.\"}\r\n```\r\n\r\nThis is perhaps the next \"most simple\" example that leads into the next ones.",
               "createdAt": "2024-10-11T17:32:23Z",
-              "updatedAt": "2024-10-11T17:32:36Z"
+              "updatedAt": "2024-10-19T14:00:14Z"
             }
           ]
         },
@@ -1217,6 +1217,86 @@
               "body": "HTTPS records allow apex aliasing (as in the next example), but only for clients that support HTTPS records.  These examples mostly assume that compatibility with non-HTTPS-record-aware clients is required.\r\n\r\nIn this case, we could avoid duplicating the A/AAAA records by making `www` a CNAME to the apex (as in the multi-CDN example), but I thought that might not be the best choice for our simplest example.",
               "createdAt": "2024-10-15T19:42:24Z",
               "updatedAt": "2024-10-15T19:42:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6N06Ey",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T13:53:51Z",
+          "updatedAt": "2024-10-19T13:53:51Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "Perhaps we just be clear that this retains compatibility (see suggestion above),",
+              "createdAt": "2024-10-19T13:53:51Z",
+              "updatedAt": "2024-10-19T13:53:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6N06XL",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T13:55:28Z",
+          "updatedAt": "2024-10-19T13:55:28Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n{: title=\"Simple example zone with the same configuration on the apex and web domain and which continues to support clients which don't support SVCB.\"}\r\n```",
+              "createdAt": "2024-10-19T13:55:28Z",
+              "updatedAt": "2024-10-19T13:55:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6N07aj",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T13:58:42Z",
+          "updatedAt": "2024-10-19T13:58:42Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "Updated this to be clear that it only supports clients which support SVCB, and also switched the record type from HTTPS to SVCB as an example of using SVCB records.\r\n\r\nThis leads into the multi-CDN examples, but is outside the \"CDN\" context\".  I'll also add some additional AAAA records above.  This was a case where an implementer was getting confused. ",
+              "createdAt": "2024-10-19T13:58:42Z",
+              "updatedAt": "2024-10-19T13:58:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6N1B-k",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-19T14:05:59Z",
+          "updatedAt": "2024-10-19T14:05:59Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "I think it's much better to show a \"selected\" multi-CDN example.\r\n(As a CDN vendor, I don't see it being operationally viable for CDN vendors to offer a merged multi-CDN implementation.  The automation required for that is out-of-scope from this draft and would be a huge operational pain.)\r\nTrying to show the zone apex case may be adding more confusion than it helps with.",
+              "createdAt": "2024-10-19T14:05:59Z",
+              "updatedAt": "2024-10-19T14:05:59Z"
             }
           ]
         }
