@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 14 April 2025                                         E. Nygren
+Expires: 24 April 2025                                         E. Nygren
                                                      Akamai Technologies
-                                                         11 October 2024
+                                                         21 October 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 April 2025.
+   This Internet-Draft will expire on 24 April 2025.
 
 Copyright Notice
 
@@ -200,7 +200,23 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
               HTTPS 1 . ech=ABC...
 
       Figure 2: Simple example zone with the same configuration on the
-                            apex and web domain.
+      apex and web domain and which continues to support clients which
+                            don't support SVCB.
+
+ $ORIGIN heterogeneous.example. ; Example zone with two pools of servers
+ pool1 300 IN A     192.0.2.1
+               AAAA  2001:db8:1::a
+               AAAA  2001:db8:1::b
+               AAAA  2001:db8:1::c
+ pool2 300 IN A     192.0.2.2
+               AAAA  2001:db8:2::a
+               AAAA  2001:db8:2::b
+ service         SVCB 1 pool1 ech=ABC...
+ service         SVCB 1 pool2 ech=DEF...
+
+    Figure 3: Service at service.heterogeneous.example. that round-
+     robins between two server pools with different configurations.
+              Only supports clients which are SVCB-aware.
 
    $ORIGIN cdn.example. ; CDN operator zone
    pool 300 IN A 192.0.2.1
@@ -216,14 +232,14 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
    www 300  IN CNAME pool.cdn.example.
 
-           Figure 3: ECH usage pattern for an aliasing-based CDN.
+           Figure 4: ECH usage pattern for an aliasing-based CDN.
 
    $ORIGIN secret.example. ; High confidentiality zone
    www     3600 IN HTTPS 1 backend ech=ABC... mandatory=ech
    backend 300  IN A     192.0.2.1
                    AAAA  2001:db8::1
 
-            Figure 4: A domain that is only reachable using ECH.
+            Figure 5: A domain that is only reachable using ECH.
 
    $ORIGIN cdn1.example. ; First CDN operator zone
    pool 300 IN A 192.0.2.1
@@ -250,9 +266,12 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
                AAAA 2001:db8::1
                AAAA 2001:db8::2
 
-   www 3600  IN CNAME @
+   ; some times containing
+   www 3600  IN CNAME pool.cdn1.example.
+   ; other times containing
+   www 3600  IN CNAME pool.cdn2.example.
 
-      Figure 5: Multi-CDN configuration, preferring one CDN and using
+      Figure 6: Multi-CDN configuration, preferring one CDN and using
                     the second via client-side failover.
 
    $ORIGIN dns.example. ; DNS server example.
@@ -262,7 +281,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
    _dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
 
-            Figure 6: Example of a DNS server that supports ECH.
+            Figure 7: Example of a DNS server that supports ECH.
 
 8.  Security Considerations
 
