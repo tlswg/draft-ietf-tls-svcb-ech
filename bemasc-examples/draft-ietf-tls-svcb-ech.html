@@ -1284,25 +1284,26 @@ www 300 IN A 192.0.2.1
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-simple-example-zone-with-th" class="selfRef">Simple example zone with the same configuration on the apex and web domain and which continues to support clients which don't support SVCB.</a>
+<a href="#name-simple-example-zone-with-th" class="selfRef">Simple example zone with the same configuration on the apex and web domain.  It is compatible with clients that do or do not support HTTPS records.</a>
         </figcaption></figure>
-<span id="name-service-at-serviceheterogen"></span><figure id="figure-3">
+<span id="name-service-that-allows-clients"></span><figure id="figure-3">
         <div class="alignLeft art-text artwork" id="section-7-2.1">
 <pre>
 $ORIGIN heterogeneous.example. ; Example zone with two pools of servers
-pool1 300 IN A     192.0.2.1
-              AAAA  2001:db8:1::a
-              AAAA  2001:db8:1::b
-              AAAA  2001:db8:1::c
-pool2 300 IN A     192.0.2.2
-              AAAA  2001:db8:2::a
-              AAAA  2001:db8:2::b
-service         SVCB 1 pool1 ech=ABC...
-service         SVCB 1 pool2 ech=DEF...
+pool1 300 IN    A    192.0.2.1
+                AAAA 2001:db8:1::a
+pool2 300 IN    A    192.0.2.2
+                AAAA 2001:db8:2::a
+service 300 IN SVCB 1 pool1 ech=ABC...
+               SVCB 1 pool2 ech=DEF...
+               A 192.0.2.1
+               A 192.0.2.2
+               AAAA 2001:db8:1::a
+               AAAA 2001:db8:2::a
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-service-at-serviceheterogen" class="selfRef">Service at service.heterogeneous.example. that round-robins between two server pools with different configurations.  Only supports clients which are SVCB-aware.</a>
+<a href="#name-service-that-allows-clients" class="selfRef">Service that allows clients to choose between two server pools with different ECH configurations.</a>
         </figcaption></figure>
 <span id="name-ech-usage-pattern-for-an-al"></span><figure id="figure-4">
         <div class="alignLeft art-text artwork" id="section-7-3.1">
@@ -1337,42 +1338,37 @@ backend 300  IN A     192.0.2.1
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-a-domain-that-is-only-reach" class="selfRef">A domain that is only reachable using ECH.</a>
         </figcaption></figure>
-<span id="name-multi-cdn-configuration-pre"></span><figure id="figure-6">
+<span id="name-multi-cdn-configuration-usi"></span><figure id="figure-6">
         <div class="alignLeft art-text artwork" id="section-7-5.1">
 <pre>
 $ORIGIN cdn1.example. ; First CDN operator zone
-pool 300 IN A 192.0.2.1
-            AAAA 2001:db8::1
+pool 300 IN A     192.0.2.1
+            AAAA  2001:db8::1
             HTTPS 1 . ech=ABC...
 
 $ORIGIN cdn2.example. ; Second CDN operator zone
-pool 300 IN A 192.0.2.2
-            AAAA 2001:db8::2
+pool 300 IN A     192.0.2.2
+            AAAA  2001:db8::2
             HTTPS 1 . ech=DEF...
 
-;; Multi-CDN customer zone
-$ORIGIN customer.example. ; Multi-CDN customer's zone
-; In this configuration, the customer is combining HTTPS
-; records from the CDNs' zones, with appropriate modifications.
-; Automation is required to keep these records consistent with
-; the original records in the CDN providers' zones.
-@   3600 IN HTTPS 1 pool.cdn1.example. ech=ABC...
-            HTTPS 1 pool.cdn2.example. ech=DEF...
+;; Multi-CDN customer zone (version 1)
+$ORIGIN customer.example.
+@   3600 IN HTTPS 0 pool.cdn1.example.
 ; Apex IP records for compatibility with clients that do not support
 ; HTTPS records.
 @   300  IN A    192.0.2.1
-            A    192.0.2.2
             AAAA 2001:db8::1
-            AAAA 2001:db8::2
-
-; some times containing
 www 3600  IN CNAME pool.cdn1.example.
-; other times containing
+
+;; Multi-CDN customer zone (version 2)
+@   3600 IN HTTPS 0 pool.cdn2.example.
+@   300  IN A    192.0.2.2
+            AAAA 2001:db8::2
 www 3600  IN CNAME pool.cdn2.example.
 </pre>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
-<a href="#name-multi-cdn-configuration-pre" class="selfRef">Multi-CDN configuration, preferring one CDN and using the second via client-side failover.</a>
+<a href="#name-multi-cdn-configuration-usi" class="selfRef">Multi-CDN configuration using server-side selection.</a>
         </figcaption></figure>
 <span id="name-example-of-a-dns-server-tha"></span><figure id="figure-7">
         <div class="alignLeft art-text artwork" id="section-7-6.1">
@@ -1380,7 +1376,7 @@ www 3600  IN CNAME pool.cdn2.example.
 $ORIGIN dns.example. ; DNS server example.
 @    3600 IN A     192.0.2.1
              AAAA  2001:db8::1
-             HTTPS 1 . ech=ABC... alpn=h3 dohpath=/q{?dns"}
+             HTTPS 1 . ech=ABC... alpn=h3 dohpath=/q{?dns}
 
 _dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
 </pre>

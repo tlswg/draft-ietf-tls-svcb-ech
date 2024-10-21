@@ -200,23 +200,23 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
               HTTPS 1 . ech=ABC...
 
       Figure 2: Simple example zone with the same configuration on the
-      apex and web domain and which continues to support clients which
-                            don't support SVCB.
+     apex and web domain.  It is compatible with clients that do or do
+                         not support HTTPS records.
 
  $ORIGIN heterogeneous.example. ; Example zone with two pools of servers
- pool1 300 IN A     192.0.2.1
-               AAAA  2001:db8:1::a
-               AAAA  2001:db8:1::b
-               AAAA  2001:db8:1::c
- pool2 300 IN A     192.0.2.2
-               AAAA  2001:db8:2::a
-               AAAA  2001:db8:2::b
- service         SVCB 1 pool1 ech=ABC...
- service         SVCB 1 pool2 ech=DEF...
+ pool1 300 IN    A    192.0.2.1
+                 AAAA 2001:db8:1::a
+ pool2 300 IN    A    192.0.2.2
+                 AAAA 2001:db8:2::a
+ service 300 IN SVCB 1 pool1 ech=ABC...
+                SVCB 1 pool2 ech=DEF...
+                A 192.0.2.1
+                A 192.0.2.2
+                AAAA 2001:db8:1::a
+                AAAA 2001:db8:2::a
 
-    Figure 3: Service at service.heterogeneous.example. that round-
-     robins between two server pools with different configurations.
-              Only supports clients which are SVCB-aware.
+      Figure 3: Service that allows clients to choose between two
+            server pools with different ECH configurations.
 
    $ORIGIN cdn.example. ; CDN operator zone
    pool 300 IN A 192.0.2.1
@@ -242,42 +242,36 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
             Figure 5: A domain that is only reachable using ECH.
 
    $ORIGIN cdn1.example. ; First CDN operator zone
-   pool 300 IN A 192.0.2.1
-               AAAA 2001:db8::1
+   pool 300 IN A     192.0.2.1
+               AAAA  2001:db8::1
                HTTPS 1 . ech=ABC...
 
    $ORIGIN cdn2.example. ; Second CDN operator zone
-   pool 300 IN A 192.0.2.2
-               AAAA 2001:db8::2
+   pool 300 IN A     192.0.2.2
+               AAAA  2001:db8::2
                HTTPS 1 . ech=DEF...
 
-   ;; Multi-CDN customer zone
-   $ORIGIN customer.example. ; Multi-CDN customer's zone
-   ; In this configuration, the customer is combining HTTPS
-   ; records from the CDNs' zones, with appropriate modifications.
-   ; Automation is required to keep these records consistent with
-   ; the original records in the CDN providers' zones.
-   @   3600 IN HTTPS 1 pool.cdn1.example. ech=ABC...
-               HTTPS 1 pool.cdn2.example. ech=DEF...
+   ;; Multi-CDN customer zone (version 1)
+   $ORIGIN customer.example.
+   @   3600 IN HTTPS 0 pool.cdn1.example.
    ; Apex IP records for compatibility with clients that do not support
    ; HTTPS records.
    @   300  IN A    192.0.2.1
-               A    192.0.2.2
                AAAA 2001:db8::1
-               AAAA 2001:db8::2
-
-   ; some times containing
    www 3600  IN CNAME pool.cdn1.example.
-   ; other times containing
+
+   ;; Multi-CDN customer zone (version 2)
+   @   3600 IN HTTPS 0 pool.cdn2.example.
+   @   300  IN A    192.0.2.2
+               AAAA 2001:db8::2
    www 3600  IN CNAME pool.cdn2.example.
 
-      Figure 6: Multi-CDN configuration, preferring one CDN and using
-                    the second via client-side failover.
+       Figure 6: Multi-CDN configuration using server-side selection.
 
    $ORIGIN dns.example. ; DNS server example.
    @    3600 IN A     192.0.2.1
                 AAAA  2001:db8::1
-                HTTPS 1 . ech=ABC... alpn=h3 dohpath=/q{?dns"}
+                HTTPS 1 . ech=ABC... alpn=h3 dohpath=/q{?dns}
 
    _dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
 
