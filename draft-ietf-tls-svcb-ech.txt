@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 12 April 2025                                         E. Nygren
+Expires: 24 April 2025                                         E. Nygren
                                                      Akamai Technologies
-                                                          9 October 2024
+                                                         21 October 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 April 2025.
+   This Internet-Draft will expire on 24 April 2025.
 
 Copyright Notice
 
@@ -62,11 +62,12 @@ Table of Contents
      5.2.  ClientHello construction
      5.3.  Performance optimizations
    6.  Interaction with HTTP Alt-Svc
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   7.  Examples
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Authors' Addresses
 
 1.  Overview
@@ -110,7 +111,7 @@ Table of Contents
 ech="AEj+DQBEAQAgACAdd+scUi0IYFsXnUIU7ko2Nd9+F8M26pAGZVpz/KrWPgAEAAEAAWQ
 VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
- Figure 1: ECH SvcParam with a public_name of "ech-sites.example.com
+ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.com"
 
 4.  Server behavior
 
@@ -188,7 +189,95 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
    that RRSet.  This precludes the use of certain connections that Alt-
    Svc would otherwise allow, as discussed in Section 9.3 of [SVCB].
 
-7.  Security Considerations
+7.  Examples
+
+   $ORIGIN simple.example. ; Simple example zone
+   @ 300 IN A     192.0.2.1
+            AAAA  2001:db8::1
+            HTTPS 1 . ech=ABC...
+   www 300 IN A 192.0.2.1
+              AAAA 2001:db8::1
+              HTTPS 1 . ech=ABC...
+
+      Figure 2: Simple example zone with the same configuration on the
+     apex and web domain.  It is compatible with clients that do or do
+                         not support HTTPS records.
+
+ $ORIGIN heterogeneous.example. ; Example zone with two pools of servers
+ pool1 300 IN    A    192.0.2.1
+                 AAAA 2001:db8:1::a
+ pool2 300 IN    A    192.0.2.2
+                 AAAA 2001:db8:2::a
+ service 300 IN SVCB 1 pool1 ech=ABC...
+                SVCB 1 pool2 ech=DEF...
+                A 192.0.2.1
+                A 192.0.2.2
+                AAAA 2001:db8:1::a
+                AAAA 2001:db8:2::a
+
+      Figure 3: Service that allows clients to choose between two
+            server pools with different ECH configurations.
+
+   $ORIGIN cdn.example. ; CDN operator zone
+   pool 300 IN A 192.0.2.1
+               AAAA 2001:db8::1
+               HTTPS 1 . ech=ABC...
+
+   $ORIGIN customer.example. ; CDN customer's zone
+   @   3600 IN HTTPS 0 pool.cdn.example.
+   ; Apex IP records for compatibility with clients that do not support
+   ; HTTPS records.
+   @   300  IN A    192.0.2.1
+               AAAA 2001:db8::1
+
+   www 300  IN CNAME pool.cdn.example.
+
+           Figure 4: ECH usage pattern for an aliasing-based CDN.
+
+   $ORIGIN secret.example. ; High confidentiality zone
+   www     3600 IN HTTPS 1 backend ech=ABC... mandatory=ech
+   backend 300  IN A     192.0.2.1
+                   AAAA  2001:db8::1
+
+            Figure 5: A domain that is only reachable using ECH.
+
+   $ORIGIN cdn1.example. ; First CDN operator zone
+   pool 300 IN A     192.0.2.1
+               AAAA  2001:db8::1
+               HTTPS 1 . ech=ABC...
+
+   $ORIGIN cdn2.example. ; Second CDN operator zone
+   pool 300 IN A     192.0.2.2
+               AAAA  2001:db8::2
+               HTTPS 1 . ech=DEF...
+
+   ;; Multi-CDN customer zone (version 1)
+   $ORIGIN customer.example.
+   @   3600 IN HTTPS 0 pool.cdn1.example.
+   ; Apex IP records for compatibility with clients that do not support
+   ; HTTPS records.
+   @   300  IN A    192.0.2.1
+               AAAA 2001:db8::1
+   www 3600  IN CNAME pool.cdn1.example.
+
+   ;; Multi-CDN customer zone (version 2)
+   @   3600 IN HTTPS 0 pool.cdn2.example.
+   @   300  IN A    192.0.2.2
+               AAAA 2001:db8::2
+   www 3600  IN CNAME pool.cdn2.example.
+
+       Figure 6: Multi-CDN configuration using server-side selection.
+
+   $ORIGIN dns.example. ; DNS server example.
+   @    3600 IN A     192.0.2.1
+                AAAA  2001:db8::1
+                HTTPS 1 . ech=ABC... alpn=h3 dohpath=/q{?dns}
+
+   _dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
+
+            Figure 7: Example of a DNS server that supports ECH.
+
+8.  Security Considerations
 
    A SVCB RRSet containing some RRs with "ech" and some without is
    vulnerable to a downgrade attack: a network intermediary can block
@@ -228,7 +317,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
    recommends that clients abandon the connection attempt when such an
    attack is detected.
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    IANA is instructed to modify the Service Parameter Keys Registry
    entry for "ech" as follows:
@@ -243,9 +332,9 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
                                   Table 1
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [ECH]      Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
@@ -279,7 +368,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
               Resource Records)", RFC 9460, DOI 10.17487/RFC9460,
               November 2023, <https://www.rfc-editor.org/rfc/rfc9460>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [BCP219]   Best Current Practice 219,
               <https://www.rfc-editor.org/info/bcp219>.
