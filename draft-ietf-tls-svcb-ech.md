@@ -101,8 +101,21 @@ www 300 IN A 192.0.2.1
            AAAA 2001:db8::1
            HTTPS 1 . ech=ABC...
 ~~~
-{: title="Simple example zone with the same configuration on the apex and web domain."}
+{: title="Simple example zone with the same configuration on the apex and web domain and which continues to support clients which don't support SVCB."}
 
+~~~
+$ORIGIN heterogeneous.example. ; Example zone with two pools of servers
+pool1 300 IN A     192.0.2.1
+              AAAA  2001:db8:1::a
+              AAAA  2001:db8:1::b
+              AAAA  2001:db8:1::c
+pool2 300 IN A     192.0.2.2
+              AAAA  2001:db8:2::a
+              AAAA  2001:db8:2::b
+service         SVCB 1 pool1 ech=ABC...
+service         SVCB 1 pool2 ech=DEF...
+~~~
+{: title="Service at service.heterogeneous.example. that round-robins between two server pools with different configurations.  Only supports clients which are SVCB-aware."}
 ~~~
 $ORIGIN cdn.example. ; CDN operator zone
 pool 300 IN A 192.0.2.1
@@ -154,7 +167,10 @@ $ORIGIN customer.example. ; Multi-CDN customer's zone
             AAAA 2001:db8::1
             AAAA 2001:db8::2
 
-www 3600  IN CNAME @
+; some times containing
+www 3600  IN CNAME pool.cdn1.example.
+; other times containing
+www 3600  IN CNAME pool.cdn2.example.
 ~~~
 {: title="Multi-CDN configuration, preferring one CDN and using the second via client-side failover."}
 
