@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-20T01:03:06.224529+00:00",
+  "timestamp": "2024-10-22T00:58:54.424041+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -157,15 +157,15 @@
       "id": "I_kwDOKaV2Rc6ZGyuq",
       "title": "Add some examples (and perhaps operational considerations) especially for the Multi-CDN case",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/17",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "enygren",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Some questions from implementers indicate that it would be helpful to both have examples\r\nas well as operational considerations that makes it clear how to use this in a multiCDN scenario.\r\nIn-particular, examples showing how if there are multiple ECH keys supported by different sets of servers\r\nthen they need to have distinct TargetNames.\r\n",
       "createdAt": "2024-10-06T14:38:57Z",
-      "updatedAt": "2024-10-06T14:38:57Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-21T15:41:39Z",
+      "closedAt": "2024-10-21T15:41:39Z",
       "comments": []
     }
   ],
@@ -1073,24 +1073,26 @@
       "id": "PR_kwDOKaV2Rc5-WdOB",
       "title": "Add a variety of examples",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/18",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #17",
       "createdAt": "2024-10-11T14:30:34Z",
-      "updatedAt": "2024-10-19T14:05:59Z",
+      "updatedAt": "2024-10-21T15:41:38Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "b3034861d3b683e2f163fd8573171515177f49f0",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-examples",
-      "headRefOid": "03ad4ce80109a426eeb2741118ce892d7c180173",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "735d0a0d9697821b67355286032d5bc27db1e204",
+      "closedAt": "2024-10-21T15:41:38Z",
+      "mergedAt": "2024-10-21T15:41:38Z",
+      "mergedBy": "enygren",
+      "mergeCommit": {
+        "oid": "013a39e303d07377b952a7ef49f011e69d3aa6ec"
+      },
       "comments": [
         {
           "author": "seanturner",
@@ -1299,6 +1301,52 @@
               "updatedAt": "2024-10-19T14:05:59Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6OALFj",
+          "commit": {
+            "abbreviatedOid": "1ba8889"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-21T15:05:27Z",
+          "updatedAt": "2024-10-21T15:05:27Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6OARN8",
+          "commit": {
+            "abbreviatedOid": "03ad4ce"
+          },
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-21T15:13:02Z",
+          "updatedAt": "2024-10-21T15:13:02Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "OK, I've incorporated these suggestions, with some additional tweaks.",
+              "createdAt": "2024-10-21T15:13:02Z",
+              "updatedAt": "2024-10-21T15:13:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6OATnA",
+          "commit": {
+            "abbreviatedOid": "735d0a0"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-21T15:15:47Z",
+          "updatedAt": "2024-10-21T15:15:47Z",
+          "comments": []
         }
       ]
     }
