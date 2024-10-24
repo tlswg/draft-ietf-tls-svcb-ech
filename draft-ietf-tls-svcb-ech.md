@@ -56,7 +56,7 @@ In wire format, the value of the parameter is an ECHConfigList ({{Section 4 of !
 ech="AEj+DQBEAQAgACAdd+scUi0IYFsXnUIU7ko2Nd9+F8M26pAGZVpz/KrWPgAEAAEAAWQ
 VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 ~~~
-{: title="ECH SvcParam with a public_name of "ech-sites.example.com""}
+{: title="ECH SvcParam with a public_name of "ech-sites.example.net"."}
 
 # Server behavior
 
