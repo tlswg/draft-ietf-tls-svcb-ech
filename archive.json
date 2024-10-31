@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-29T00:59:36.125753+00:00",
+  "timestamp": "2024-10-31T00:59:01.938253+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -166,6 +166,22 @@
       "createdAt": "2024-10-06T14:38:57Z",
       "updatedAt": "2024-10-21T15:41:39Z",
       "closedAt": "2024-10-21T15:41:39Z",
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOKaV2Rc6ce2hb",
+      "title": "Comment from Ben Kaduk",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/19",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> I agree that there's going to be a tradeoff between larger K's privacy benefit and other considerations, but it seems to me that even the framing as \"1/K\" is misleading.\r\n> When the sites behind a given fronting service are of differingi popularity, the attacker can do better than 1/K at guessing.  If I'm fronting for a site that gets 900k hits/day and ten that get 10 hits/day, the attacker can just guess that all requests are for the popular site and they'll get the right answer 99.9% of the time.  I do see the disclaimer about \"idealized deployment\" at the start of the paragraph but I think we could do more to highlight just how idealized this portrayal is.",
+      "createdAt": "2024-10-30T21:00:17Z",
+      "updatedAt": "2024-10-30T21:00:17Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -1346,6 +1362,46 @@
           "body": "",
           "createdAt": "2024-10-21T15:15:47Z",
           "updatedAt": "2024-10-21T15:15:47Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOKaV2Rc6Acx0B",
+      "title": "Strengthen warning language around the anonymity set",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/20",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #19",
+      "createdAt": "2024-10-30T21:17:35Z",
+      "updatedAt": "2024-10-30T21:22:06Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "4c70e781eb3bb9f05354f54fa1337131f823b96e",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-k",
+      "headRefOid": "a023628fd2398c46aa0aac1f570b2aa1ea5ad5c0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6PbfGa",
+          "commit": {
+            "abbreviatedOid": "a023628"
+          },
+          "author": "kaduk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "Thank you!",
+          "createdAt": "2024-10-30T21:22:06Z",
+          "updatedAt": "2024-10-30T21:22:06Z",
           "comments": []
         }
       ]
