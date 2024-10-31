@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 3 May 2025                                            E. Nygren
+Expires: 4 May 2025                                            E. Nygren
                                                      Akamai Technologies
-                                                         30 October 2024
+                                                         31 October 2024
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 May 2025.
+   This Internet-Draft will expire on 4 May 2025.
 
 Copyright Notice
 
@@ -289,15 +289,15 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
    likelihood that ECH will be used in the absence of an active
    adversary.
 
-   When Encrypted ClientHello is deployed, an attacker still has many
-   ways to infer the SNI with reduced confidence.  Even in an idealized
-   deployment, ECH's protection is limited to an anonymity set
-   consisting of all the ECH-enabled server domains supported by a given
-   client-facing server.  An attacker who can enumerate this set can
-   always guess the encrypted SNI with probability at least 1/K, where K
-   is the number of domains in the set.  Some attackers may achieve much
-   greater accuracy using traffic analysis, popularity weighting, and
-   other mechanisms.
+   When Encrypted ClientHello is deployed, there are many ways that an
+   attacker might infer the SNI.  Even in an idealized deployment, ECH's
+   protection is limited to an anonymity set consisting of all the ECH-
+   enabled server domains supported by a given client-facing server that
+   share an ECH configuration.  An attacker who can enumerate this set
+   can always guess the encrypted SNI with probability at least 1/K,
+   where K is the number of domains in the set.  Some attackers may
+   achieve much greater accuracy using traffic analysis, popularity
+   weighting, and other mechanisms.
 
    ECH ensures that TLS does not disclose the SNI, but the same
    information is also present in the DNS queries used to resolve the
