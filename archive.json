@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-31T00:59:01.938253+00:00",
+  "timestamp": "2024-11-03T01:02:31.402269+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -173,15 +173,15 @@
       "id": "I_kwDOKaV2Rc6ce2hb",
       "title": "Comment from Ben Kaduk",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/19",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> I agree that there's going to be a tradeoff between larger K's privacy benefit and other considerations, but it seems to me that even the framing as \"1/K\" is misleading.\r\n> When the sites behind a given fronting service are of differingi popularity, the attacker can do better than 1/K at guessing.  If I'm fronting for a site that gets 900k hits/day and ten that get 10 hits/day, the attacker can just guess that all requests are for the popular site and they'll get the right answer 99.9% of the time.  I do see the disclaimer about \"idealized deployment\" at the start of the paragraph but I think we could do more to highlight just how idealized this portrayal is.",
       "createdAt": "2024-10-30T21:00:17Z",
-      "updatedAt": "2024-10-30T21:00:17Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-01T00:28:29Z",
+      "closedAt": "2024-11-01T00:28:29Z",
       "comments": []
     }
   ],
@@ -1371,25 +1371,35 @@
       "id": "PR_kwDOKaV2Rc6Acx0B",
       "title": "Strengthen warning language around the anonymity set",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/20",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #19",
       "createdAt": "2024-10-30T21:17:35Z",
-      "updatedAt": "2024-10-30T21:22:06Z",
+      "updatedAt": "2024-11-01T00:28:32Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "4c70e781eb3bb9f05354f54fa1337131f823b96e",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-k",
-      "headRefOid": "a023628fd2398c46aa0aac1f570b2aa1ea5ad5c0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "6f29b0d2e76ffdd56ec2a77443a1af5133c89160",
+      "closedAt": "2024-11-01T00:28:28Z",
+      "mergedAt": "2024-11-01T00:28:28Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "ab01fbe5b18072f499c7d79642dbf3264462d79b"
+      },
+      "comments": [
+        {
+          "author": "taddhar",
+          "authorAssociation": "NONE",
+          "body": "Looks good to me",
+          "createdAt": "2024-10-31T09:07:57Z",
+          "updatedAt": "2024-10-31T09:07:57Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKaV2Rc6PbfGa",
@@ -1402,6 +1412,65 @@
           "body": "Thank you!",
           "createdAt": "2024-10-30T21:22:06Z",
           "updatedAt": "2024-10-30T21:22:06Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6PgcWi",
+          "commit": {
+            "abbreviatedOid": "a023628"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "I think that this could be strengthened further.",
+          "createdAt": "2024-10-31T10:59:48Z",
+          "updatedAt": "2024-10-31T11:00:06Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nWhen Encrypted ClientHello is deployed, there are many ways that an attacker might infer the SNI. Even in an idealized deployment, ECH's protection is limited to an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server that share an ECH configuration. An attacker who can enumerate this set can always guess the encrypted SNI with probability at least 1/K, where K is the number of domains in the set. Some attackers may achieve much greater accuracy using traffic analysis, popularity weighting, and other mechanisms.\r\n```",
+              "createdAt": "2024-10-31T10:59:49Z",
+              "updatedAt": "2024-10-31T11:00:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6PhsJF",
+          "commit": {
+            "abbreviatedOid": "b1077b7"
+          },
+          "author": "enygren",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-31T13:27:12Z",
+          "updatedAt": "2024-10-31T13:27:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6PhvEL",
+          "commit": {
+            "abbreviatedOid": "b1077b7"
+          },
+          "author": "kaduk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-31T13:30:52Z",
+          "updatedAt": "2024-10-31T13:30:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKaV2Rc6Plsul",
+          "commit": {
+            "abbreviatedOid": "6f29b0d"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-31T20:31:35Z",
+          "updatedAt": "2024-10-31T20:31:35Z",
           "comments": []
         }
       ]
