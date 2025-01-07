@@ -30,6 +30,9 @@ author:
     org: Akamai Technologies
     email: erik+ietf@nygren.org
 
+informative:
+   CLINIC: DOI.10.1007/978-3-319-08506-7_8
+
 --- abstract
 
 To use TLS Encrypted ClientHello (ECH) the client needs to learn the ECH configuration for a server before it attempts a connection to the server.  This specification provides a mechanism for conveying the ECH configuration information via DNS, using a SVCB or HTTPS record.
@@ -185,7 +188,7 @@ _dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
 
 A SVCB RRSet containing some RRs with "ech" and some without is vulnerable to a downgrade attack: a network intermediary can block connections to the endpoints that support ECH, causing the client to fall back to a non-ECH endpoint.  This configuration is NOT RECOMMENDED. Zone owners who do use such a mixed configuration SHOULD mark the RRs with "ech" as more preferred (i.e. lower SvcPriority value) than those without, in order to maximize the likelihood that ECH will be used in the absence of an active adversary.
 
-When Encrypted ClientHello is deployed, the inner TLS SNI is protected from disclosure to attackers. However, there are still many ways that an attacker might infer the SNI. Even in an idealized deployment, ECH's protection is limited to an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server that share an ECH configuration. An attacker who can enumerate this set can always guess the encrypted SNI with probability at least 1/K, where K is the number of domains in the set. Some attackers may achieve much greater accuracy using traffic analysis, popularity weighting, and other mechanisms.
+When Encrypted ClientHello is deployed, the inner TLS SNI is protected from disclosure to attackers. However, there are still many ways that an attacker might infer the SNI. Even in an idealized deployment, ECH's protection is limited to an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server that share an ECH configuration. An attacker who can enumerate this set can always guess the encrypted SNI with probability at least 1/K, where K is the number of domains in the set. Some attackers may achieve much greater accuracy using traffic analysis, popularity weighting, and other mechanisms (see e.g., {{CLINIC}}).
 
 ECH ensures that TLS does not disclose the SNI, but the same information is also present in the DNS queries used to resolve the server's hostname.  This specification does not conceal the server name from the DNS resolver.  If DNS messages are sent between the client and resolver without authenticated encryption, an attacker on this path can also learn the destination server name.  A similar attack applies if the client can be linked to a request from the resolver to a DNS authority.
 
