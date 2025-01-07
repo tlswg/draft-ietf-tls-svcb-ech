@@ -283,11 +283,12 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
    vulnerable to a downgrade attack: a network intermediary can block
    connections to the endpoints that support ECH, causing the client to
    fall back to a non-ECH endpoint.  This configuration is NOT
-   RECOMMENDED.  Zone owners who do use such a mixed configuration
-   SHOULD mark the RRs with "ech" as more preferred (i.e. lower
-   SvcPriority value) than those without, in order to maximize the
-   likelihood that ECH will be used in the absence of an active
-   adversary.
+   RECOMMENDED, but it may be unavoidable when combining endpoints from
+   different providers or conducting a staged rollout.  Zone owners who
+   do use such a mixed configuration SHOULD mark the RRs with "ech" as
+   more preferred (i.e. lower SvcPriority value) than those without, in
+   order to maximize the likelihood that ECH will be used in the absence
+   of an active adversary.
 
    When Encrypted ClientHello is deployed, the inner TLS SNI is
    protected from disclosure to attackers.  However, there are still
