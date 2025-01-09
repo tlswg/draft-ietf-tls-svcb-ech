@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-07T00:58:53.054678+00:00",
+  "timestamp": "2025-01-09T00:58:18.248849+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -182,6 +182,22 @@
       "createdAt": "2024-10-30T21:00:17Z",
       "updatedAt": "2024-11-01T00:28:29Z",
       "closedAt": "2024-11-01T00:28:29Z",
+      "comments": []
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOKaV2Rc6lR6Sg",
+      "title": "SECDIR Review Comments",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/21",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Reviewer: Tirumaleswar Reddy K\r\nReview result: Ready with issues\r\n\r\nI have reviewed this document as part of the SEC area directorate's ongoing\r\neffort to review all IETF documents being processed by the IESG.  These\r\ncomments were written primarily for the benefit of the Security area directors.\r\nDocument editors and WG chairs should treat these comments just like any other\r\nlast-call comments.\r\n\r\n1. A SVCB RRSet containing some RRs with \"ech\" and some without is\r\n   vulnerable to a downgrade attack: a network intermediary can block\r\n   connections to the endpoints that support ECH, causing the client to\r\n   fall back to a non-ECH endpoint.  This configuration is NOT\r\n   RECOMMENDED.\r\n\r\nComment> Please mention scenarios where such mixed behavior may be acceptable. Highlighting the exceptions would be helpful.\r\n\r\n2. ECH ensures that TLS does not disclose the SNI, but the same\r\n   information is also present in the DNS queries used to resolve the\r\n   server's hostname.  This specification does not conceal the server\r\n   name from the DNS resolver.  If DNS messages are sent between the\r\n   client and resolver without authenticated encryption, an attacker on\r\n   this path can also learn the destination server name.  A similar\r\n   attack applies if the client can be linked to a request from the\r\n   resolver to a DNS authority.\r\n\r\nComment> While authenticated encryption provides protection against active attackers, the privacy benefits are negated if the DNS resolver itself is malicious. It may be useful to recommend using trusted DNS resolvers.\r\n\r\n3. It will be helpful to provide recommendations to endpoint implementations not to mislead end-users that \"ECH\" would provide the same level of security fully anonymizing solutions like Tor,      \"ECH\" may not provide any privacy because of the reasons discussed in 2nd paragraph of Security Considerations Section.\r\n   \r\n4. The discussion on the anonymity set could benefit from examples or references that illustrate how traffic analysis might narrow it.\r\n\r\n5. The behaviour recommendation for middleboxes acting as a TLS proxy should be discussed.",
+      "createdAt": "2025-01-07T14:06:20Z",
+      "updatedAt": "2025-01-07T14:06:20Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -1471,6 +1487,86 @@
           "body": "",
           "createdAt": "2024-10-31T20:31:35Z",
           "updatedAt": "2024-10-31T20:31:35Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOKaV2Rc6G8gQ0",
+      "title": "Mention situations that result in mixed ECH/non-ECH",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/22",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addresses point 1 of #21",
+      "createdAt": "2025-01-07T14:21:45Z",
+      "updatedAt": "2025-01-07T21:07:00Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "69c771fb84825eac76968a987c1aa0b10449a1f7",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-mixed",
+      "headRefOid": "5581c13c87af122611504599c2c20da302c016cb",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6XHqUY",
+          "commit": {
+            "abbreviatedOid": "5581c13"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-07T21:07:00Z",
+          "updatedAt": "2025-01-07T21:07:00Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "PR_kwDOKaV2Rc6G8rbV",
+      "title": "Add a reference for traffic analysis",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/23",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Address point 4 of #21",
+      "createdAt": "2025-01-07T14:44:43Z",
+      "updatedAt": "2025-01-07T21:09:59Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "69c771fb84825eac76968a987c1aa0b10449a1f7",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-cite-attack",
+      "headRefOid": "2eb8fac7653bbd6ac2ea8c541c822d764f60504c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6XHrVX",
+          "commit": {
+            "abbreviatedOid": "2eb8fac"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-07T21:09:59Z",
+          "updatedAt": "2025-01-07T21:09:59Z",
           "comments": []
         }
       ]
