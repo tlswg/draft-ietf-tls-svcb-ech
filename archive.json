@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-12T01:04:21.791979+00:00",
+  "timestamp": "2025-01-14T00:56:04.641626+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -110,15 +110,15 @@
       "id": "I_kwDOKaV2Rc6QklPs",
       "title": "WGLC: Comments from Stephen Farrell",
       "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "enygren",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "From Stephen Farrell:\r\n\r\nI (strongly:-) support publication. I do have comments but really\r\nam ok if those are ignored.\r\n\r\n- section 3 has a MUST for checking all IP addresses are for servers\r\nthat have access to the relevant ECH private key material. We go into\r\nsome more detail on how to do that in [1] so perhaps some of that\r\ntext ought be here, or (given the best HOWTO may change) that could\r\nbe via a reference to [1]. OTOH, that'd maybe be a normative ref\r\nso could delay things, so not sure how best to proceed. (See also\r\nthe \"bind\" comment at the end.)\r\n\r\n- A particular case of the above is if an ECHConfigList has more\r\nthan one ECHConfig (e.g. for different algs). I'm not sure if the\r\ntext here implies that all public values must \"work\" or if it\r\nmeans that at least one public value must \"work.\"  (In publication\r\ncode I've written I check all public keys and only publish if all\r\npublic keys are ok, but one could do otherwise and not suffer\r\ndisaster:-)\r\n\r\n- I'm not clear if section 3 implies a server has to check that\r\nall relevant A/AAAA and ipv[46]hint values are present and\r\ncorrect before publication. (Test publication code I've done\r\ncurrently ignores hints at publication time, and just checks\r\none of A/AAAA works, but I'd be ok with being more picky.)\r\n\r\n- I think it'd be better (but not necessary) if section 3 had some\r\nguidance on when >1 HTTPS RRdata value is reasonable or to be\r\nexpected for ECH-specific reasons. (Basically, if one has >1\r\nCDN I guess?)\r\n\r\n- I wonder if there's a need to consider the new happy eyeballs\r\nstuff [2] before declaring victory here. I've no strong opinion but\r\nthis and [2] probably should at least not contradict one another.\r\n(I don't know if that's been checked.)\r\n\r\n- Does 4.1 correspond to what browsers do now with ECH? It's\r\nnot clear to me that it does, but I'm not sure. (I'm currently\r\nwriting a test generator to figure that out but it'll be some\r\nweeks before I could answer the question myself.)\r\n\r\n- 4.2 implies but does not say that parts of the ech= value that\r\naffect the outer CH need to be encoded as extensions within the\r\nECHConfigList, or else are at the whim of the client code. That's\r\nprobably ok, but worth a bit of thought. (Personally, I'd prefer\r\nwe disparage extensions within ECHConfigList values but I think\r\nI've lost that argument before:-)\r\n\r\n- 4.3 has a MUST NOT for clients - do we need to say that that\r\nmeans normal clients and not the special-case client that is\r\nneeded to do checks before publication?\r\n\r\n- section 5 says: \"Origins that publish an \"ech\" SvcParam in their\r\nHTTPS record SHOULD also publish an HTTPS record with the \"ech\"\r\nSvcParam for every alt-authority offered in its Alt-Svc Field\r\nValues. Otherwise, clients might reveal the name of the server\r\nin an unencrypted ClientHello to an alt-authority.\" I think some\r\nexamples of that would really help. More generally some examples\r\nwould be good to add as an appendix.\r\n\r\n- I'd like to (yet again:-) suggest that defining a PEM format for\r\nECH stuff would be worthwhile, and could be done as an appendix of\r\nthis document. (I.e. include [3] as an appendix.) When I suggested\r\nthis before, there was some opposition so it;s ok if people still\r\ndon't want that, but IMO it'd be good were that defined somewhere.\r\n\r\n- Finally, I've been playing with bind a bit to see what it allows\r\nbe published. See below for what's published for one name right\r\nnow (I may delete that or it might still work when you read this,\r\napologies if the latter applies:-)\r\n\r\n     $ dig +short https [dodgy.test.defo.ie](http://dodgy.test.defo.ie/)\r\n     1 . ech=eHl6dwo=\r\n     1 . ech\r\n     1 . ech=YWJjCg==\r\n     10000 . ech=dG90YWwtY3JhcAo=\r\n     1 . ech=Cg==\r\n\r\nGiven that the onus should be on ECH aware clients to reject such\r\ndodgy stuff, perhaps we'd be better off to just say that publishers\r\nMUST check the presentation syntax is empty or valid base64 and\r\nSHOULD be a base64 encoded ECHConfigList? Then we could leave all\r\nthe details of checks before publication to [1] which may be a\r\nbetter approach.\r\n\r\nAgain though, I'm fine that this be published as-is and prefer\r\nthat to spending loads of time arguing, so do feel free to ignore\r\nany of the above,\r\n\r\nCheers,\r\nS.\r\n\r\n[1] https://datatracker.ietf.org/doc/html/draft-ietf-tls-wkech\r\n[2] https://datatracker.ietf.org/doc/draft-pauly-v6ops-happy-eyeballs-v3/\r\n[3] https://datatracker.ietf.org/doc/draft-farrell-tls-pemesni/",
       "createdAt": "2024-07-23T15:32:08Z",
-      "updatedAt": "2024-07-23T15:34:20Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-13T21:55:03Z",
+      "closedAt": "2025-01-13T21:55:03Z",
       "comments": [
         {
           "author": "enygren",
@@ -133,6 +133,13 @@
           "body": "From Stephen Farrell:\r\n\r\nOn 25/06/2024 16:30, Mike Bishop wrote:\r\n> Responses to some of these in-line below. More generally, I think\r\n> several of these arise from the question of whether requirements on\r\n> \"publishers\" apply specifically to a tool which is automatically\r\n> generating these records or generally to the operating entity causing\r\n> the records to be created. I believe Section 3 is attempting to\r\n> describe a state that needs to exist for safe deployment, not\r\n> attempting to specify a tool per se. Thus I generally support leaving\r\n> and/or moving requirements on automation to [1].\r\n\r\nI tend to agree and am fine with whatever wording tweaks\r\nthe authors prefer, but it'd likely be good to not say\r\n\"MUST\" (in this doc) in cases where the text is guidance\r\nfor what's a sane thing to do, rather than asking developers\r\nto reject other inputs.\r\n",
           "createdAt": "2024-07-23T15:34:19Z",
           "updatedAt": "2024-07-23T15:34:19Z"
+        },
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I believe we've thoroughly reviewed this input, so I'm going to close this issue.  @sftcd, please file separate issues or PRs, or comment on the WG mailing list, for any remaining concerns.",
+          "createdAt": "2025-01-13T21:55:03Z",
+          "updatedAt": "2025-01-13T21:55:03Z"
         }
       ]
     },
@@ -1499,11 +1506,13 @@
       "state": "OPEN",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "enygren"
+      ],
       "labels": [],
       "body": "Addresses point 1 of #21",
       "createdAt": "2025-01-07T14:21:45Z",
-      "updatedAt": "2025-01-07T21:07:00Z",
+      "updatedAt": "2025-01-13T20:54:30Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "69c771fb84825eac76968a987c1aa0b10449a1f7",
@@ -1539,11 +1548,13 @@
       "state": "OPEN",
       "author": "bemasc",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "enygren"
+      ],
       "labels": [],
       "body": "Address point 4 of #21",
       "createdAt": "2025-01-07T14:44:43Z",
-      "updatedAt": "2025-01-07T21:09:59Z",
+      "updatedAt": "2025-01-13T20:54:20Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "69c771fb84825eac76968a987c1aa0b10449a1f7",
