@@ -1,6 +1,6 @@
 # Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
 
-This is the working area for the IETF [TLS Working Group](https://datatracker.ietf.org/wg/tls/documents/) Internet-Draft, "Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings".
+This is the working area for the IETF [TLS Working Group](https://datatracker.ietf.org/group/tls/documents/) Internet-Draft, "Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings".
 
 * [Editor's Copy](https://tlswg.github.io/draft-ietf-tls-svcb-ech/#go.draft-ietf-tls-svcb-ech.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-tls-svcb-ech)
