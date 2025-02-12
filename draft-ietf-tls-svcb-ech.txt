@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 11 July 2025                                          E. Nygren
+Expires: 16 August 2025                                        E. Nygren
                                                      Akamai Technologies
-                                                          7 January 2025
+                                                        12 February 2025
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 July 2025.
+   This Internet-Draft will expire on 16 August 2025.
 
 Copyright Notice
 
@@ -283,11 +283,12 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
    vulnerable to a downgrade attack: a network intermediary can block
    connections to the endpoints that support ECH, causing the client to
    fall back to a non-ECH endpoint.  This configuration is NOT
-   RECOMMENDED.  Zone owners who do use such a mixed configuration
-   SHOULD mark the RRs with "ech" as more preferred (i.e. lower
-   SvcPriority value) than those without, in order to maximize the
-   likelihood that ECH will be used in the absence of an active
-   adversary.
+   RECOMMENDED, but it may be unavoidable when combining endpoints from
+   different providers or conducting a staged rollout.  Zone owners who
+   do use such a mixed configuration SHOULD mark the RRs with "ech" as
+   more preferred (i.e. lower SvcPriority value) than those without, in
+   order to maximize the likelihood that ECH will be used in the absence
+   of an active adversary.
 
    When Encrypted ClientHello is deployed, the inner TLS SNI is
    protected from disclosure to attackers.  However, there are still
@@ -298,7 +299,8 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
    who can enumerate this set can always guess the encrypted SNI with
    probability at least 1/K, where K is the number of domains in the
    set.  Some attackers may achieve much greater accuracy using traffic
-   analysis, popularity weighting, and other mechanisms.
+   analysis, popularity weighting, and other mechanisms (see e.g.,
+   [CLINIC]).
 
    ECH ensures that TLS does not disclose the SNI, but the same
    information is also present in the DNS queries used to resolve the
@@ -380,6 +382,14 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
               Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
               <https://www.rfc-editor.org/info/rfc9499>.
+
+   [CLINIC]   Miller, B., Huang, L., Joseph, A., and J. Tygar, "I Know
+              Why You Went to the Clinic: Risks and Realization of HTTPS
+              Traffic Analysis", Springer International Publishing,
+              Lecture Notes in Computer Science pp. 143-163,
+              DOI 10.1007/978-3-319-08506-7_8, ISBN ["9783319085050",
+              "9783319085067"], 2014,
+              <https://doi.org/10.1007/978-3-319-08506-7_8>.
 
    [RFC7838]  Nottingham, M., McManus, P., and J. Reschke, "HTTP
               Alternative Services", RFC 7838, DOI 10.17487/RFC7838,

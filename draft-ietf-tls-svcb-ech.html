@@ -11,11 +11,11 @@
 <meta content="
        To use TLS Encrypted ClientHello (ECH) the client needs to learn the ECH configuration for a server before it attempts a connection to the server.  This specification provides a mechanism for conveying the ECH configuration information via DNS, using a SVCB or HTTPS record. 
     " name="description">
-<meta content="xml2rfc 3.25.0" name="generator">
+<meta content="xml2rfc 3.26.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-tls-svcb-ech-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.25.0
+  xml2rfc 3.26.0
     Python 3.12.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1046,11 +1046,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ECH in SVCB</td>
-<td class="right">January 2025</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schwartz, et al.</td>
-<td class="center">Expires 11 July 2025</td>
+<td class="center">Expires 16 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-tls-svcb-ech-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-07" class="published">7 January 2025</time>
+<time datetime="2025-02-12" class="published">12 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-11">11 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-16">16 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1110,7 +1110,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1411,8 +1411,8 @@ _dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
       <h2 id="name-security-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-8-1">A SVCB RRSet containing some RRs with "ech" and some without is vulnerable to a downgrade attack: a network intermediary can block connections to the endpoints that support ECH, causing the client to fall back to a non-ECH endpoint.  This configuration is <span class="bcp14">NOT RECOMMENDED</span>. Zone owners who do use such a mixed configuration <span class="bcp14">SHOULD</span> mark the RRs with "ech" as more preferred (i.e. lower SvcPriority value) than those without, in order to maximize the likelihood that ECH will be used in the absence of an active adversary.<a href="#section-8-1" class="pilcrow">¶</a></p>
-<p id="section-8-2">When Encrypted ClientHello is deployed, the inner TLS SNI is protected from disclosure to attackers. However, there are still many ways that an attacker might infer the SNI. Even in an idealized deployment, ECH's protection is limited to an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server that share an ECH configuration. An attacker who can enumerate this set can always guess the encrypted SNI with probability at least 1/K, where K is the number of domains in the set. Some attackers may achieve much greater accuracy using traffic analysis, popularity weighting, and other mechanisms.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-1">A SVCB RRSet containing some RRs with "ech" and some without is vulnerable to a downgrade attack: a network intermediary can block connections to the endpoints that support ECH, causing the client to fall back to a non-ECH endpoint.  This configuration is <span class="bcp14">NOT RECOMMENDED</span>, but it may be unavoidable when combining endpoints from different providers or conducting a staged rollout. Zone owners who do use such a mixed configuration <span class="bcp14">SHOULD</span> mark the RRs with "ech" as more preferred (i.e. lower SvcPriority value) than those without, in order to maximize the likelihood that ECH will be used in the absence of an active adversary.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">When Encrypted ClientHello is deployed, the inner TLS SNI is protected from disclosure to attackers. However, there are still many ways that an attacker might infer the SNI. Even in an idealized deployment, ECH's protection is limited to an anonymity set consisting of all the ECH-enabled server domains supported by a given client-facing server that share an ECH configuration. An attacker who can enumerate this set can always guess the encrypted SNI with probability at least 1/K, where K is the number of domains in the set. Some attackers may achieve much greater accuracy using traffic analysis, popularity weighting, and other mechanisms (see e.g., <span>[<a href="#CLINIC" class="cite xref">CLINIC</a>]</span>).<a href="#section-8-2" class="pilcrow">¶</a></p>
 <p id="section-8-3">ECH ensures that TLS does not disclose the SNI, but the same information is also present in the DNS queries used to resolve the server's hostname.  This specification does not conceal the server name from the DNS resolver.  If DNS messages are sent between the client and resolver without authenticated encryption, an attacker on this path can also learn the destination server name.  A similar attack applies if the client can be linked to a request from the resolver to a DNS authority.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <p id="section-8-4">An attacker who can prevent SVCB resolution can deny clients any associated security benefits. A hostile recursive resolver can always deny service to SVCB queries, but network intermediaries can often prevent resolution as well, even when the client and recursive resolver validate DNSSEC <span>[<a href="#RFC9364" class="cite xref">RFC9364</a>]</span> and use a secure transport. These downgrade attacks can prevent a client from being aware that "ech" is configured which could result in the client sending the ClientHello in cleartext. To prevent downgrades, <span><a href="https://rfc-editor.org/rfc/rfc9460#section-3.1" class="relref">Section 3.1</a> of [<a href="#SVCB" class="cite xref">SVCB</a>]</span> recommends that clients abandon the connection attempt when such an attack is detected.<a href="#section-8-4" class="pilcrow">¶</a></p>
 </section>
@@ -1501,6 +1501,10 @@ _dns 3600 IN SVCB  1 @ ech=ABC... alpn=dot,doq,h3 dohpath=/q{?dns}
 <div class="refInstance" id="RFC9499">
             <span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">K. Fujiwara</span>, <span class="refTitle">"DNS Terminology"</span>, <span class="seriesInfo">BCP 219</span>, <span class="seriesInfo">RFC 9499</span>, <span class="seriesInfo">DOI 10.17487/RFC9499</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9499">https://www.rfc-editor.org/info/rfc9499</a>&gt;</span>. </div>
 </dd>
+<dd class="break"></dd>
+<dt id="CLINIC">[CLINIC]</dt>
+        <dd>
+<span class="refAuthor">Miller, B.</span>, <span class="refAuthor">Huang, L.</span>, <span class="refAuthor">Joseph, A.</span>, and <span class="refAuthor">J. Tygar</span>, <span class="refTitle">"I Know Why You Went to the Clinic: Risks and Realization of HTTPS Traffic Analysis"</span>, <span class="refContent">Springer International Publishing</span>, <span class="seriesInfo">Lecture Notes in Computer Science pp. 143-163</span>, <span class="seriesInfo">DOI 10.1007/978-3-319-08506-7_8</span>, <span class="seriesInfo">ISBN ["9783319085050", "9783319085067"]</span>, <time datetime="2014" class="refDate">2014</time>, <span>&lt;<a href="https://doi.org/10.1007/978-3-319-08506-7_8">https://doi.org/10.1007/978-3-319-08506-7_8</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7838">[RFC7838]</dt>
         <dd>
