@@ -57,8 +57,8 @@ Table of Contents
    1.  Overview
    2.  Terminology
    3.  SvcParam for ECH configuration
-   4.  Server behavior
-   5.  Client behavior
+   4.  Requirements for server deployments
+   5.  Requirements for client implementations
      5.1.  Disabling fallback
      5.2.  ClientHello construction
      5.3.  Performance optimizations
@@ -114,7 +114,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
 Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
 
-4.  Server behavior
+4.  Requirements for server deployments
 
    When publishing a record containing an "ech" parameter, the publisher
    MUST ensure that all IP addresses of TargetName correspond to servers
@@ -129,7 +129,7 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
    compatible version, each connection attempt will have to be retried,
    delaying the connection and wasting resources.
 
-5.  Client behavior
+5.  Requirements for client implementations
 
    This section describes client behavior in using ECH configurations
    provided in SVCB or HTTPS records.
@@ -325,8 +325,9 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
 
 9.  IANA Considerations
 
-   IANA is instructed to modify the Service Parameter Keys Registry
-   entry for "ech" as follows:
+   IANA is instructed to modify the "DNS SVCB Service Parameter Keys
+   (SvcParamKeys)" registry entry for "ech", on the "DNS Service
+   Bindings (SVCB)" page, as follows:
 
       +========+======+====================+===========+============+
       | Number | Name | Meaning            | Format    | Change     |
