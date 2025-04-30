@@ -97,10 +97,10 @@ Table of Contents
 
 3.  SvcParam for ECH configuration
 
-   The "ech" SvcParamKey is defined for conveying the ECH configuration
-   of an alternative endpoint.  It is applicable to all schemes that use
-   TLS-based protocols (including DTLS [RFC9147] and QUIC version 1
-   [RFC9001]) unless otherwise specified.
+   The "ech" SvcParamKey conveys the ECH configuration of an alternative
+   endpoint.  It is applicable to all schemes that use TLS-based
+   protocols (including DTLS [RFC9147] and QUIC version 1 [RFC9001])
+   unless otherwise specified.
 
    In wire format, the value of the parameter is an ECHConfigList
    (Section 4 of [ECH]), including the redundant length prefix.  In
