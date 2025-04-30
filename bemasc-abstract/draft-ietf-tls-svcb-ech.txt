@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 16 August 2025                                        E. Nygren
+Expires: 1 November 2025                                       E. Nygren
                                                      Akamai Technologies
-                                                        12 February 2025
+                                                           30 April 2025
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -18,7 +18,8 @@ Abstract
    To use TLS Encrypted ClientHello (ECH) the client needs to learn the
    ECH configuration for a server before it attempts a connection to the
    server.  This specification provides a mechanism for conveying the
-   ECH configuration information via DNS, using a SVCB or HTTPS record.
+   ECH configuration information via DNS, using a SVCB or HTTPS resource
+   record (RR).
 
 Status of This Memo
 
@@ -35,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 August 2025.
+   This Internet-Draft will expire on 1 November 2025.
 
 Copyright Notice
 
@@ -343,9 +344,9 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
 
    [ECH]      Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
-              draft-ietf-tls-esni-22, 15 September 2024,
+              draft-ietf-tls-esni-24, 20 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
-              esni-22>.
+              esni-24>.
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
