@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T01:10:44.252501+00:00",
+  "timestamp": "2025-05-01T01:11:43.912124+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -1585,6 +1585,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOKaV2Rc6UjSyz",
+      "title": "Editorial comments from Med Boucadair",
+      "url": "https://github.com/tlswg/draft-ietf-tls-svcb-ech/pull/24",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Comment from Med Boucadair",
+      "createdAt": "2025-04-30T18:39:55Z",
+      "updatedAt": "2025-04-30T18:54:11Z",
+      "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "baseRefName": "main",
+      "baseRefOid": "11b81f1d677185caea044d0998ae2f43ef9ef19c",
+      "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
+      "headRefName": "bemasc-abstract",
+      "headRefOid": "bcb719c9cb08a7e201ebd103f1556ceabcd7bb8d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
