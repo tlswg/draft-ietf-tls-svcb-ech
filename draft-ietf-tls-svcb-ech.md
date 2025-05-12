@@ -196,7 +196,7 @@ An attacker who can prevent SVCB resolution can deny clients any associated secu
 
 # IANA Considerations
 
-IANA is instructed to modify the "DNS SVCB Service Parameter Keys (SvcParamKeys)" registry entry for "ech", on the "DNS Service Bindings (SVCB)" page, as follows:
+In the "DNS SVCB Service Parameter Keys (SvcParamKeys)" registry on the "DNS Service Bindings (SVCB)" page, IANA is instructed to modify the entry for "ech" as follows:
 
 | Number      | Name            | Meaning                             | Format Reference                         | Change Controller |
 | ----------- | ------          | ----------------------              | ---------------------------------------- | ----------------- |
