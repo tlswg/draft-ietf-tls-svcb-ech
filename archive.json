@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-01T01:11:43.912124+00:00",
+  "timestamp": "2025-05-13T01:07:52.508380+00:00",
   "repo": "tlswg/draft-ietf-tls-svcb-ech",
   "labels": [
     {
@@ -1598,19 +1598,40 @@
       "labels": [],
       "body": "Comment from Med Boucadair",
       "createdAt": "2025-04-30T18:39:55Z",
-      "updatedAt": "2025-04-30T18:54:11Z",
+      "updatedAt": "2025-05-12T15:36:07Z",
       "baseRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "baseRefName": "main",
       "baseRefOid": "11b81f1d677185caea044d0998ae2f43ef9ef19c",
       "headRepository": "tlswg/draft-ietf-tls-svcb-ech",
       "headRefName": "bemasc-abstract",
-      "headRefOid": "bcb719c9cb08a7e201ebd103f1556ceabcd7bb8d",
+      "headRefOid": "13dae5d7298a39e195777bffdff921c04d1ffd01",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKaV2Rc6o5T8P",
+          "commit": {
+            "abbreviatedOid": "bcb719c"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-12T15:07:54Z",
+          "updatedAt": "2025-05-12T15:08:42Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "```suggestion\r\nIn the \"DNS SVCB Service Parameter Keys (SvcParamKeys)\" registry on the \"DNS Service Bindings (SVCB)\" page, IANA is instructed to modify the entry for \"ech\" as follows:\r\n```\r\n\r\nThis ordering seems less awkward if we need to mention all the titles in full.",
+              "createdAt": "2025-05-12T15:07:54Z",
+              "updatedAt": "2025-05-12T15:08:42Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
