@@ -35,7 +35,7 @@ informative:
 
 --- abstract
 
-To use TLS Encrypted ClientHello (ECH) the client needs to learn the ECH configuration for a server before it attempts a connection to the server.  This specification provides a mechanism for conveying the ECH configuration information via DNS, using a SVCB or HTTPS record.
+To use TLS Encrypted ClientHello (ECH) the client needs to learn the ECH configuration for a server before it attempts a connection to the server.  This specification provides a mechanism for conveying the ECH configuration information via DNS, using a SVCB or HTTPS resource record (RR).
 
 --- middle
 
@@ -51,7 +51,7 @@ This specification defines a new SvcParam to enable the use of TLS Encrypted Cli
 
 # SvcParam for ECH configuration {#ech-param}
 
-The "ech" SvcParamKey is defined for conveying the ECH configuration of an alternative endpoint.  It is applicable to all schemes that use TLS-based protocols (including DTLS {{?RFC9147}} and QUIC version 1 {{?RFC9001}}) unless otherwise specified.
+The "ech" SvcParamKey conveys the ECH configuration of an alternative endpoint.  It is applicable to all schemes that use TLS-based protocols (including DTLS {{?RFC9147}} and QUIC version 1 {{?RFC9001}}) unless otherwise specified.
 
 In wire format, the value of the parameter is an ECHConfigList ({{Section 4 of !ECH}}), including the redundant length prefix.  In presentation format, the value is the ECHConfigList in Base 64 Encoding ({{Section 4 of !RFC4648}}).  Base 64 is used here to simplify integration with TLS server software.  To enable simpler parsing, this SvcParam MUST NOT contain escape sequences.
 
@@ -61,13 +61,13 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 ~~~
 {: title="ECH SvcParam with a public_name of "ech-sites.example.net"."}
 
-# Server behavior
+# Requirements for server deployments
 
 When publishing a record containing an "ech" parameter, the publisher MUST ensure that all IP addresses of TargetName correspond to servers that have access to the corresponding private key or are authoritative for the public name. (See {{Sections 6.1.7 and 8.1.1 of !ECH}} for requirements related to the public name.)  Otherwise, connections will fail entirely.
 
 These servers SHOULD support a protocol version that is compatible with ECH.  At the time of writing, the compatible versions are TLS 1.3, DTLS 1.3, and QUIC version 1.  If the server does not support a compatible version, each connection attempt will have to be retried, delaying the connection and wasting resources.
 
-# Client behavior {#ech-client-behavior}
+# Requirements for client implementations {#ech-client-behavior}
 
 This section describes client behavior in using ECH configurations provided in SVCB or HTTPS records.
 
@@ -196,7 +196,7 @@ An attacker who can prevent SVCB resolution can deny clients any associated secu
 
 # IANA Considerations
 
-IANA is instructed to modify the Service Parameter Keys Registry entry for "ech" as follows:
+In the "DNS SVCB Service Parameter Keys (SvcParamKeys)" registry on the "DNS Service Bindings (SVCB)" page, IANA is instructed to modify the entry for "ech" as follows:
 
 | Number      | Name            | Meaning                             | Format Reference                         | Change Controller |
 | ----------- | ------          | ----------------------              | ---------------------------------------- | ----------------- |
