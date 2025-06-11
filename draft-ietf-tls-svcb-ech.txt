@@ -5,9 +5,9 @@
 TLS Working Group                                            B. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                               M. Bishop
-Expires: 16 August 2025                                        E. Nygren
+Expires: 13 December 2025                                      E. Nygren
                                                      Akamai Technologies
-                                                        12 February 2025
+                                                            11 June 2025
 
 
    Bootstrapping TLS Encrypted ClientHello with DNS Service Bindings
@@ -18,7 +18,8 @@ Abstract
    To use TLS Encrypted ClientHello (ECH) the client needs to learn the
    ECH configuration for a server before it attempts a connection to the
    server.  This specification provides a mechanism for conveying the
-   ECH configuration information via DNS, using a SVCB or HTTPS record.
+   ECH configuration information via DNS, using a SVCB or HTTPS resource
+   record (RR).
 
 Status of This Memo
 
@@ -35,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 August 2025.
+   This Internet-Draft will expire on 13 December 2025.
 
 Copyright Notice
 
@@ -56,8 +57,8 @@ Table of Contents
    1.  Overview
    2.  Terminology
    3.  SvcParam for ECH configuration
-   4.  Server behavior
-   5.  Client behavior
+   4.  Requirements for server deployments
+   5.  Requirements for client implementations
      5.1.  Disabling fallback
      5.2.  ClientHello construction
      5.3.  Performance optimizations
@@ -96,10 +97,10 @@ Table of Contents
 
 3.  SvcParam for ECH configuration
 
-   The "ech" SvcParamKey is defined for conveying the ECH configuration
-   of an alternative endpoint.  It is applicable to all schemes that use
-   TLS-based protocols (including DTLS [RFC9147] and QUIC version 1
-   [RFC9001]) unless otherwise specified.
+   The "ech" SvcParamKey conveys the ECH configuration of an alternative
+   endpoint.  It is applicable to all schemes that use TLS-based
+   protocols (including DTLS [RFC9147] and QUIC version 1 [RFC9001])
+   unless otherwise specified.
 
    In wire format, the value of the parameter is an ECHConfigList
    (Section 4 of [ECH]), including the redundant length prefix.  In
@@ -113,7 +114,7 @@ VZWNoLXNpdGVzLmV4YW1wbGUubmV0AAA="
 
 Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
 
-4.  Server behavior
+4.  Requirements for server deployments
 
    When publishing a record containing an "ech" parameter, the publisher
    MUST ensure that all IP addresses of TargetName correspond to servers
@@ -128,7 +129,7 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
    compatible version, each connection attempt will have to be retried,
    delaying the connection and wasting resources.
 
-5.  Client behavior
+5.  Requirements for client implementations
 
    This section describes client behavior in using ECH configurations
    provided in SVCB or HTTPS records.
@@ -324,8 +325,9 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
 
 9.  IANA Considerations
 
-   IANA is instructed to modify the Service Parameter Keys Registry
-   entry for "ech" as follows:
+   In the "DNS SVCB Service Parameter Keys (SvcParamKeys)" registry on
+   the "DNS Service Bindings (SVCB)" page, IANA is instructed to modify
+   the entry for "ech" as follows:
 
       +========+======+====================+===========+============+
       | Number | Name | Meaning            | Format    | Change     |
@@ -343,9 +345,9 @@ Figure 1: ECH SvcParam with a public_name of "ech-sites.example.net".
 
    [ECH]      Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
-              draft-ietf-tls-esni-22, 15 September 2024,
+              draft-ietf-tls-esni-24, 20 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
-              esni-22>.
+              esni-24>.
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
